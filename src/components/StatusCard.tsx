@@ -1,5 +1,6 @@
-import { objectType } from "./Main";
-import "../stylesheets/StatusCard.css";
+import React, { useState, useLayoutEffect } from 'react';
+import { objectType } from '../App';
+import '../stylesheets/StatusCard.css';
 
 const INC_DEC_CONSTANTS = {
   severe: 1000,
@@ -8,24 +9,27 @@ const INC_DEC_CONSTANTS = {
   guarded: 50,
 };
 
-const StatusCard = ({ dataSet }: { dataSet: objectType[] }) => {
+const StatusCard = ({ dataSet, from }: { dataSet: objectType[]; from: string }) => {
+  const [className, setClassName] = useState('card-set');
   const setCardColor = (incDec: number) => {
-    if (incDec >= INC_DEC_CONSTANTS.severe) return "black";
-    else if (incDec >= INC_DEC_CONSTANTS.high) return "red";
-    else if (incDec >= INC_DEC_CONSTANTS.elevated) return "yellow";
-    else if (incDec >= INC_DEC_CONSTANTS.guarded) return "blue";
-    else return "green";
+    if (incDec >= INC_DEC_CONSTANTS.severe) return 'black';
+    else if (incDec >= INC_DEC_CONSTANTS.high) return 'red';
+    else if (incDec >= INC_DEC_CONSTANTS.elevated) return 'yellow';
+    else if (incDec >= INC_DEC_CONSTANTS.guarded) return 'blue';
+    else return 'green';
   };
 
+  useLayoutEffect(() => {
+    setClassName(`card-set-${from}`);
+  }, [from]);
+
   return (
-    <div className="card-set">
+    <div className={className}>
       {dataSet.map((data, i) => {
-        const cardColor = "status-card card-color-" + setCardColor(data.incDec);
+        const cardColor = 'status-card card-color-' + setCardColor(data.incDec);
         return (
-          <div className={cardColor}>
-            <div className="status-card-location">
-              {data.gubun === "검역" ? "해외" : data.gubun}
-            </div>
+          <div key={`${data.gubun}-${i}`} className={cardColor}>
+            <div className="status-card-location">{data.gubun === '검역' ? '해외' : data.gubun}</div>
             <div className="status-card-info">
               <div className="status-card-info-content">{`신규 확진자 수 : ${data.incDec.toLocaleString()}명`}</div>
               <div className="status-card-info-content">{`격리 해제 : ${data.isolClearCnt.toLocaleString()}명`}</div>
@@ -38,4 +42,4 @@ const StatusCard = ({ dataSet }: { dataSet: objectType[] }) => {
   );
 };
 
-export default StatusCard;
+export default React.memo(StatusCard);

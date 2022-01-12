@@ -1,0 +1,25 @@
+.map-wrapper {
+  display: flex;
+  justify-content: center;
+  min-width: 1200px;
+  transform: translateY(-100px);
+}
+
+.map {
+  width: 530px;
+  height: 800px;
+  cursor: pointer;
+}
+
+.land {
+  fill: #cccccc;
+  fill-opacity: 1;
+  stroke: white;
+  stroke-opacity: 1;
+  stroke-width: 0.5;
+  transition: 0.3s;
+}
+
+.land:hover {
+  fill: #000;
+}

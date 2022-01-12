@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+#wrapper {
+  width: 100vw;
+  min-width: 1200px;
+  height: 100vh;
+}
+
+.card-set-card {
+  display: flex;
+  justify-content: center;
+  margin: 15px auto;
+}
+
+.card-set-map {
+  display: flex;
+  align-items: center;
+  margin-left: 175px;
+  height: 800px;
+}
