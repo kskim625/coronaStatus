@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Card from './components/Card';
 import Map from './components/Map';
+import Graph from './components/Graph';
 import './stylesheets/Transition.css';
 
 export interface objectType {
@@ -34,6 +35,7 @@ const Transition = ({ data }: { data: objectType[][] }) => {
         <Routes>
           <Route path="/card" element={<Card data={data} />}></Route>
           <Route path="/map" element={<Map data={data} />}></Route>
+          <Route path="/graph" element={<Graph data={data} />}></Route>
           <Route path="/" element={<Main />}></Route>
         </Routes>
       </CSSTransition>

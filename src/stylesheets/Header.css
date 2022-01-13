@@ -5,7 +5,6 @@
   font-weight: 600;
   padding: 15px;
   min-width: 1200px;
-  border-bottom: 1px #000 dashed;
 }
 
 #header-buttons {
@@ -13,7 +12,13 @@
   justify-content: center;
   padding: 15px;
   min-width: 1200px;
+  border-top: 1px #000 dashed;
   border-bottom: 1px #000 solid;
+}
+
+.header-date {
+  display: flex;
+  justify-content: center;
 }
 
 .header-image {
