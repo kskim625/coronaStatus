@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Chart, BarElement, BarController, CategoryScale, LinearScale, Title } from 'chart.js';
+import { Chart, BarElement, BarController, CategoryScale, LinearScale, Title, Legend } from 'chart.js';
 import { objectType } from '../App';
 import '../stylesheets/Graph.css';
 
@@ -11,12 +11,15 @@ interface datasetsType {
 
 const Graph = ({ data }: { data: objectType[][] }) => {
   const [labels, setLabels] = useState<string[]>([]);
-  const [datasets, setDatasets] = useState<datasetsType[]>([]);
-  const graphRef = useRef<HTMLCanvasElement>(null);
+  const [datasetsOne, setDatasetsOne] = useState<datasetsType[]>([]);
+  const [datasetsTwo, setDatasetsTwo] = useState<datasetsType[]>([]);
+  const graphOneRef = useRef<HTMLCanvasElement>(null);
+  const graphTwoRef = useRef<HTMLCanvasElement>(null);
 
-  Chart.register(BarElement, BarController, CategoryScale, LinearScale, Title);
+  Chart.register(BarElement, BarController, CategoryScale, LinearScale, Title, Legend);
   const labelsTemp: string[] = [];
-  const datasetsTemp: datasetsType[] = [];
+  const datasetsOneTemp: datasetsType[] = [];
+  const datasetsTwoTemp: datasetsType[] = [];
   const incDec: number[] = [];
   const isolClearCnt: number[] = [];
   const deathCnt: number[] = [];
@@ -32,21 +35,7 @@ const Graph = ({ data }: { data: objectType[][] }) => {
     });
   };
 
-  useEffect(() => {
-    setData();
-    datasetsTemp.push({ label: '신규 확진자 수', backgroundColor: '#3e95cd', data: incDec });
-    datasetsTemp.push({ label: '격리 해제', backgroundColor: '#000', data: isolClearCnt });
-    datasetsTemp.push({ label: '누적 사망자 수', backgroundColor: '#8e5ea2', data: deathCnt });
-    setLabels(labelsTemp);
-    setDatasets(datasetsTemp);
-  }, []);
-
-  useEffect(() => {
-    if (datasets.length === 0 || graphRef.current === null) return;
-    const ctx = graphRef.current.getContext('2d');
-    if (ctx === null) return;
-    ctx.canvas.width = 800;
-    ctx.canvas.height = 700;
+  const drawChart = (ctx: CanvasRenderingContext2D, text: string, datasets: datasetsType[]) => {
     new Chart(ctx, {
       type: 'bar',
       data: {
@@ -57,15 +46,40 @@ const Graph = ({ data }: { data: objectType[][] }) => {
         plugins: {
           title: {
             display: true,
-            text: '코로나 현황판',
+            text: text,
           },
         },
         responsive: false,
       },
     });
-  }, [datasets]);
+  };
 
-  return <canvas id="graph" width={8} height={7} ref={graphRef}></canvas>;
+  useEffect(() => {
+    setData();
+    datasetsOneTemp.push({ label: '신규 확진자 수', backgroundColor: '#3e95cd', data: incDec });
+    datasetsOneTemp.push({ label: '누적 사망자 수', backgroundColor: '#8e5ea2', data: deathCnt });
+    datasetsTwoTemp.push({ label: '격리 해제', backgroundColor: '#000', data: isolClearCnt });
+    setLabels(labelsTemp);
+    setDatasetsOne(datasetsOneTemp);
+    setDatasetsTwo(datasetsTwoTemp);
+  }, []);
+
+  useEffect(() => {
+    if (datasetsOne.length === 0 || datasetsTwo.length === 0) return;
+    if (graphOneRef.current === null || graphTwoRef.current === null) return;
+    const ctxOne = graphOneRef.current.getContext('2d');
+    const ctxTwo = graphTwoRef.current.getContext('2d');
+    if (ctxOne === null || ctxTwo === null) return;
+    drawChart(ctxOne, '코로나 오늘 확진자 / 누적 사망자 추이', datasetsOne);
+    drawChart(ctxTwo, '코로나 완치자 추이', datasetsTwo);
+  }, [datasetsOne]);
+
+  return (
+    <div id="graph-set">
+      <canvas className="graph-one" width={575} height={700} ref={graphOneRef}></canvas>
+      <canvas className="graph-two" width={575} height={700} ref={graphTwoRef}></canvas>
+    </div>
+  );
 };
 
 export default Graph;
