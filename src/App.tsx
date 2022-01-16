@@ -92,7 +92,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Header />
+      <Header data={data}/>
       <Transition data={data} />
     </BrowserRouter>
   );

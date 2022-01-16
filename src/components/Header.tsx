@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import '../stylesheets/Header.css';
 import flag from '../images/koreaFlag.svg';
 import HeaderButtons from './HeaderButtons';
+import { objectType } from '../App';
 
-const Header = () => {
-  const [today] = useState<Date>(new Date());
+const Header = ({ data }: { data: objectType[][] }) => {
+  const [date] = useState<Date>(new Date(data[0][0].createDt));
 
   return (
     <>
@@ -13,7 +14,7 @@ const Header = () => {
         <div className="header-description">한국 코로나 상황판</div>
       </div>
       <HeaderButtons />
-      <div className="header-date">{`${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate() - 1}일 기준`}</div>
+      <div className="header-date">{`${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate() - 1}일 기준`}</div>
     </>
   );
 };
