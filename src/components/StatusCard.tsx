@@ -36,7 +36,7 @@ const StatusCard = ({ dataSet, from }: { dataSet: objectType[]; from: string }) 
               <div className="status-card-info-content">{`누적 사망자 수 : ${data.deathCnt.toLocaleString()}명`}</div>
             </div>
           </div>
-        );
+        )
       })}
     </div>
   );

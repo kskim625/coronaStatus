@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../stylesheets/Header.css';
 import flag from '../images/koreaFlag.svg';
 import HeaderButtons from './HeaderButtons';
 import { objectType } from '../App';
 
 const Header = ({ data }: { data: objectType[][] }) => {
-  const [date] = useState<Date>(new Date(data[0][0].createDt));
+  const [date, setDate] = useState<Date>(new Date());
+
+  useEffect(() => {
+    if (data.length === 0) return;
+    setDate(new Date(data[0][0].createDt))
+  }, []);
 
   return (
     <>
