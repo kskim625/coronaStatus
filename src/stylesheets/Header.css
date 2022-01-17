@@ -43,3 +43,11 @@
   background-color: #000;
   color: #fff;
 }
+
+.header-error-msg {
+  display: flex;
+  justify-content: center;
+  min-width: 1200px;
+  font-size: 35px;
+  font-weight: 600;
+}

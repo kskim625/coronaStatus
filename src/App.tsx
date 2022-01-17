@@ -60,6 +60,7 @@ const App = () => {
   };
 
   const divideData = (response: objectType[], dataSet: objectType[][]) => {
+    if (response === undefined) return;
     sortData(response);
     const total = response.shift();
     if (total !== undefined) dataSet.push([total]);
