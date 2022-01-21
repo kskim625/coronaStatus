@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useLayoutEffect, useEffect, useRef } from 'react';
 import { Chart, BarElement, BarController, CategoryScale, LinearScale, Title, Legend } from 'chart.js';
 import { objectType } from '../App';
 import '../stylesheets/Graph.css';
@@ -26,7 +26,7 @@ const Graph = ({ data }: { data: objectType[][] }) => {
 
   const setData = () => {
     data.forEach((dataSet) => {
-      dataSet.map((d, i) => {
+      dataSet.map((d) => {
         labelsTemp.push(d.gubun);
         incDec.push(d.incDec);
         isolClearCnt.push(d.isolClearCnt);
@@ -54,7 +54,18 @@ const Graph = ({ data }: { data: objectType[][] }) => {
     });
   };
 
+  const clearCtx = () => {
+    console.log(data);
+    if (!graphOneRef.current || !graphTwoRef.current) return;
+    const ctxOne = graphOneRef.current.getContext('2d');
+    const ctxTwo = graphTwoRef.current.getContext('2d');
+    if (!ctxOne || !ctxTwo) return;
+    ctxOne.clearRect(0, 0, graphOneRef.current.width, graphOneRef.current.height);
+    ctxTwo.clearRect(0, 0, graphTwoRef.current.width, graphTwoRef.current.height);
+  };
+
   useEffect(() => {
+    clearCtx();
     setData();
     datasetsOneTemp.push({ label: '신규 확진자 수', backgroundColor: '#3e95cd', data: incDec });
     datasetsOneTemp.push({ label: '누적 사망자 수', backgroundColor: '#8e5ea2', data: deathCnt });
@@ -66,10 +77,10 @@ const Graph = ({ data }: { data: objectType[][] }) => {
 
   useEffect(() => {
     if (datasetsOne.length === 0 || datasetsTwo.length === 0) return;
-    if (graphOneRef.current === null || graphTwoRef.current === null) return;
+    if (!graphOneRef.current || !graphTwoRef.current) return;
     const ctxOne = graphOneRef.current.getContext('2d');
     const ctxTwo = graphTwoRef.current.getContext('2d');
-    if (ctxOne === null || ctxTwo === null) return;
+    if (!ctxOne || !ctxTwo) return;
     drawChart(ctxOne, '코로나 오늘 확진자 / 누적 사망자 추이', datasetsOne);
     drawChart(ctxTwo, '코로나 완치자 추이', datasetsTwo);
   }, [datasetsOne]);
@@ -82,4 +93,4 @@ const Graph = ({ data }: { data: objectType[][] }) => {
   );
 };
 
-export default Graph;
+export default React.memo(Graph);
