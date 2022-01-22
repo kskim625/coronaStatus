@@ -1,7 +1,26 @@
 #main {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   min-width: 1200px;
   height: 101vh;
-  margin: 30px auto;
+  margin: 100px auto;
+}
+
+.main-image-btn {
+  width: 250px;
+  height: 250px;
+  border: 1px rgba(0, 0, 0, 0.2) solid;
+  border-radius: 15px;
+  padding: 50px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.main-btn-description {
+  font-size: 25px;
+  text-align: center;
+}
+
+.main-image-btn:hover {
+  transform: scale(1.05) translateY(10px);
 }

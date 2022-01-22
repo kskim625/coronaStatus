@@ -32,7 +32,7 @@ const Map = ({ data }: { data: objectType[][] }) => {
   return (
     <div className="map-wrapper">
       <KoreaMap className="map" onClick={getLocationInfo} />
-      <StatusCard dataSet={locData} from="map" />;
+      <StatusCard dataSet={locData} from="map" />
     </div>
   );
 };
