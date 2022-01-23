@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { objectType } from '../App';
 import { ReactComponent as KoreaMap } from '../images/koreaMap.svg';
+import CardColor from './CardColor';
 import StatusCard from './StatusCard';
 import '../stylesheets/Map.css';
 
@@ -30,9 +31,12 @@ const Map = ({ data }: { data: objectType[][] }) => {
   }, []);
 
   return (
-    <div className="map-wrapper">
-      <KoreaMap className="map" onClick={getLocationInfo} />
-      <StatusCard dataSet={locData} from="map" />
+    <div id="map">
+      <CardColor />
+      <div className="map-wrapper">
+        <KoreaMap className="map" onClick={getLocationInfo} />
+        <StatusCard dataSet={locData} from="map" />
+      </div>
     </div>
   );
 };

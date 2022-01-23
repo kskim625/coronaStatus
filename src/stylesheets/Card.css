@@ -4,7 +4,6 @@ body {
 }
 
 #wrapper {
-  width: 100vw;
   min-width: 1200px;
   height: 100vh;
 }

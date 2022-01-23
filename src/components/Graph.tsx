@@ -55,7 +55,6 @@ const Graph = ({ data }: { data: objectType[][] }) => {
   };
 
   const clearCtx = () => {
-    console.log(data);
     if (!graphOneRef.current || !graphTwoRef.current) return;
     const ctxOne = graphOneRef.current.getContext('2d');
     const ctxTwo = graphTwoRef.current.getContext('2d');

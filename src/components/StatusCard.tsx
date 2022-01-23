@@ -4,8 +4,8 @@ import '../stylesheets/StatusCard.css';
 
 const INC_DEC_CONSTANTS = {
   severe: 1000,
-  high: 700,
-  elevated: 200,
+  high: 500,
+  elevated: 250,
   guarded: 50,
 };
 
@@ -36,7 +36,7 @@ const StatusCard = ({ dataSet, from }: { dataSet: objectType[]; from: string }) 
               <div className="status-card-info-content">{`누적 사망자 수 : ${data.deathCnt.toLocaleString()}명`}</div>
             </div>
           </div>
-        )
+        );
       })}
     </div>
   );
