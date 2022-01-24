@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Chart, BarElement, BarController, CategoryScale, LinearScale, Title, Legend } from 'chart.js';
 import { objectType } from '../App';
 import '../stylesheets/Graph.css';

@@ -2,7 +2,7 @@ import '../stylesheets/CardColor.css';
 
 const CardColor = () => {
   const colorList = ['black', 'red', 'yellow', 'blue', 'green'];
-  const warnList = ['1000명 이상', '500명 이상', '250명 이상', '50명 이상', '50명 이하'];
+  const warnList = ['1000명 이상', '500명 이상', '250명 이상', '50명 이상', '50명 미만'];
 
   return (
     <div id="header-color-type">
