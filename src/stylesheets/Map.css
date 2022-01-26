@@ -20,6 +20,30 @@
   transition: 0.3s;
 }
 
-.land:hover {
-  fill: #000;
+.land-black {
+  fill: rgb(0, 0, 0);
+}
+
+.land-red {
+  fill: rgb(200, 0, 0);
+}
+
+.land-yellow {
+  fill: rgb(190, 190, 0);
+}
+
+.land-blue {
+  fill: rgb(0, 0, 150);
+}
+
+.land-green {
+  fill: rgb(0, 150, 0);
+}
+
+.land-black:hover,
+.land-red:hover,
+.land-yellow:hover,
+.land-blue:hover,
+.land-green:hover {
+  opacity: 0.5;
 }

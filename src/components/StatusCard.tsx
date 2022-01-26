@@ -9,15 +9,16 @@ const INC_DEC_CONSTANTS = {
   guarded: 50,
 };
 
+export const setCardColor = (incDec: number) => {
+  if (incDec >= INC_DEC_CONSTANTS.severe) return 'black';
+  else if (incDec >= INC_DEC_CONSTANTS.high) return 'red';
+  else if (incDec >= INC_DEC_CONSTANTS.elevated) return 'yellow';
+  else if (incDec >= INC_DEC_CONSTANTS.guarded) return 'blue';
+  else return 'green';
+};
+
 const StatusCard = ({ dataSet, from }: { dataSet: objectType[]; from: string }) => {
   const [className, setClassName] = useState('card-set');
-  const setCardColor = (incDec: number) => {
-    if (incDec >= INC_DEC_CONSTANTS.severe) return 'black';
-    else if (incDec >= INC_DEC_CONSTANTS.high) return 'red';
-    else if (incDec >= INC_DEC_CONSTANTS.elevated) return 'yellow';
-    else if (incDec >= INC_DEC_CONSTANTS.guarded) return 'blue';
-    else return 'green';
-  };
 
   useLayoutEffect(() => {
     setClassName(`card-set-${from}`);
