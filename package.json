@@ -84,7 +84,6 @@
   },
   "homepage": "https://github.com/kskim625/coronaStatus#readme",
   "engines": {
-    "node": "14.x",
-    "npm": "8.x"
+    "node": "14.x"
   }
 }
