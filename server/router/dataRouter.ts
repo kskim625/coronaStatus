@@ -3,9 +3,6 @@ import axios from 'axios';
 import cors from 'cors';
 
 const dataRouter = Router();
-const corsOptions = {
-  origin: ['http://localhost:3000', 'https://korea-corona-status-info.herokuapp.com'],
-};
 
 export interface objectType {
   createDt: string;
@@ -24,7 +21,7 @@ export interface objectType {
   updateDt: string;
 }
 
-dataRouter.get('/corona', cors(corsOptions), async (req: Request, res: Response, next: NextFunction) => {
+dataRouter.get('/corona', async (req: Request, res: Response, next: NextFunction) => {
   const SERVICE_URL = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson';
   const AUTHORIZATION_KEY = '?serviceKey=Fl9rhYMejA8nhCfRxunEiv8iCWEKK%2FAiNOgmkrp0onGw%2FGIpuTVQc7vH0Kmh%2BaiOeQ6SZSXjk8zaqOdbp9yYTg%3D%3D';
 
