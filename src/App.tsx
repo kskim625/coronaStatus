@@ -92,8 +92,8 @@ const App = () => {
   }, []);
 
   return (
-    <BrowserRouter>
-      <Header data={data}/>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <Header data={data} />
       <Transition data={data} />
     </BrowserRouter>
   );
