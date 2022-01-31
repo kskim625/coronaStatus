@@ -46,8 +46,7 @@ const Transition = ({ data }: { data: objectType[][] }) => {
 
 const App = () => {
   const [data, setData] = useState<objectType[][]>([]);
-  const URL = process.env.PUBLIC_URL || 'http://localhost:5000';
-  const FETCH_PATH = `${URL}/data/corona`;
+  const FETCH_PATH = '/data/corona';
 
   const sortData = (response: objectType[]) => {
     response.sort((previous, next) => {
