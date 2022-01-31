@@ -33,7 +33,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev:server": "ts-node ./server/index.ts",
-    "dev:client": "npm install && react-scripts start",
+    "dev:client": "react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
