@@ -4,7 +4,7 @@ import cors from 'cors';
 
 const dataRouter = Router();
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://kcsi.site'],
+  origin: ['http://localhost:3000', 'https://korea-corona-status-info.herokuapp.com'],
 };
 
 export interface objectType {
