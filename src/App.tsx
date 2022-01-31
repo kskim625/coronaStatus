@@ -1,4 +1,3 @@
-import { XMLParser } from 'fast-xml-parser';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -45,11 +44,7 @@ const Transition = ({ data }: { data: objectType[][] }) => {
 
 const App = () => {
   const [data, setData] = useState<objectType[][]>([]);
-
-  const SERVICE_URL = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson';
-  const AUTHORIZATION_KEY = '?serviceKey=Fl9rhYMejA8nhCfRxunEiv8iCWEKK%2FAiNOgmkrp0onGw%2FGIpuTVQc7vH0Kmh%2BaiOeQ6SZSXjk8zaqOdbp9yYTg%3D%3D';
-  const xhr = new XMLHttpRequest();
-  const parser = new XMLParser();
+  const FETCH_URL = 'http://localhost:5000/data/corona';
 
   const sortData = (response: objectType[]) => {
     response.sort((previous, next) => {
@@ -71,20 +66,10 @@ const App = () => {
     setData(dataSet);
   };
 
-  const getData = () => {
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === xhr.DONE) {
-        if (xhr.status === 200) {
-          const response = parser.parse(xhr.responseText).response;
-          const dataSet: objectType[][] = [];
-          divideData(response.body.items.item, dataSet);
-        } else {
-          console.log(`status code: ${xhr.status} fail`);
-        }
-      }
-    };
-    xhr.open('GET', SERVICE_URL + AUTHORIZATION_KEY);
-    xhr.send();
+  const getData = async () => {
+    const data = await (await fetch(FETCH_URL)).json();
+    const dataSet: objectType[][] = [];
+    divideData(data.response.body.items.item, dataSet);
   };
 
   useEffect(() => {
