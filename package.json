@@ -35,8 +35,7 @@
     "axios": "^0.25.0"
   },
   "scripts": {
-    "prestart": "",
-    "start": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "start": "npm run dev:server",
     "build": "react-scripts build",
     "heroku-postbuild": "cd server && npm install",
     "test": "react-scripts test",
