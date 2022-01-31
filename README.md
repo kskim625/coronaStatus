@@ -2,7 +2,7 @@
 
 ## 🔗 Deploy Link
 
-- [kcsi.site](kcsi.site)
+- [kcsi.site](http://www.kcsi.site)
 - 공공데이터포털 open API가 http 프로토콜만 제공하여 http 사용 (SSL 미적용)
 
 ## 🛠️ Skills
