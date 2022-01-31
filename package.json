@@ -43,7 +43,8 @@
     "dev:server": "ts-node server/index.ts",
     "dev:client": "react-scripts start",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "heroku": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100&&npm-run-all clean compile copy start"
   },
   "eslintConfig": {
     "extends": [
