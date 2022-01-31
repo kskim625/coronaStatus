@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/coronaStatus/static/css/main.b8ffc126.css",
+    "main.js": "/coronaStatus/static/js/main.cf92b1c6.js",
+    "static/js/787.1746d726.chunk.js": "/coronaStatus/static/js/787.1746d726.chunk.js",
+    "static/media/koreaMap.svg": "/coronaStatus/static/media/koreaMap.e5a5a24fcac87c19a1c4fc7e4845156b.svg",
+    "static/media/graph.jpg": "/coronaStatus/static/media/graph.c30e6777e8f0f25f0f2f.jpg",
+    "static/media/map.jpg": "/coronaStatus/static/media/map.4db8c27fb052c4c74866.jpg",
+    "static/media/card.jpg": "/coronaStatus/static/media/card.a6f2019569551e0bed82.jpg",
+    "static/media/virus.svg": "/coronaStatus/static/media/virus.58175f40f50ef83fc8ae8fb4c9cba502.svg",
+    "index.html": "/coronaStatus/index.html",
+    "main.b8ffc126.css.map": "/coronaStatus/static/css/main.b8ffc126.css.map",
+    "main.cf92b1c6.js.map": "/coronaStatus/static/js/main.cf92b1c6.js.map",
+    "787.1746d726.chunk.js.map": "/coronaStatus/static/js/787.1746d726.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b8ffc126.css",
+    "static/js/main.cf92b1c6.js"
+  ]
+}
