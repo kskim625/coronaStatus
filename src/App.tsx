@@ -46,7 +46,7 @@ const Transition = ({ data }: { data: objectType[][] }) => {
 
 const App = () => {
   const [data, setData] = useState<objectType[][]>([]);
-  const FETCH_PATH = '/data/corona';
+  const FETCH_PATH = 'http://localhost:5000/data/corona';
 
   const sortData = (response: objectType[]) => {
     response.sort((previous, next) => {
@@ -56,10 +56,11 @@ const App = () => {
     });
   };
 
-  const divideData = (response: objectType[], dataSet: objectType[][]) => {
+  const divideData = (response: objectType[]) => {
     if (response === undefined) return;
     sortData(response);
     const total = response.shift();
+    const dataSet: objectType[][] = [];
     if (total !== undefined) dataSet.push([total]);
     response.map((r: objectType, i: number) => {
       if (i % 4 === 0) dataSet.push([r]);
@@ -70,8 +71,7 @@ const App = () => {
 
   const getData = async () => {
     const data = await (await fetch(FETCH_PATH)).json();
-    const dataSet: objectType[][] = [];
-    divideData(data.response.body.items.item, dataSet);
+    divideData(data.response.body.items.item);
   };
 
   useEffect(() => {

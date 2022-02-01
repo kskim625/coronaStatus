@@ -25,7 +25,7 @@ const Header = ({ data }: { data: objectType[][] }) => {
         <div className="header-dummy"></div>
       </div>
       <HeaderButtons />
-      <div className="header-date">{`${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate() - 1}일 기준`}</div>
+      <div className="header-date">{`${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 0시 기준`}</div>
       <div className="header-error-msg">{errMsg}</div>
     </>
   );

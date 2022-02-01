@@ -2,8 +2,7 @@
 
 ## 🔗 Deploy Link
 
-- [kcsi.site](http://www.kcsi.site)
-- 공공데이터포털 open API가 http 프로토콜만 제공하여 http 사용 (SSL 미적용)
+- [heroku app 배포](https://korea-corona-status-info.herokuapp.com/)
 
 ## 🛠️ Skills
 
@@ -14,6 +13,8 @@
 
 - From Open API [공공데이터포털](https://www.data.go.kr/)
 - data format: XML
+- React -> Express -> 공공데이터포털 request
+- 공공데이터포털 -> Express -> React response
 
 ## 🖼️Images
 
