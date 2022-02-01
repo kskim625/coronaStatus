@@ -46,7 +46,7 @@ const Transition = ({ data }: { data: objectType[][] }) => {
 
 const App = () => {
   const [data, setData] = useState<objectType[][]>([]);
-  const FETCH_PATH = 'http://localhost:5000/data/corona';
+  const FETCH_PATH = 'data/corona';
 
   const sortData = (response: objectType[]) => {
     response.sort((previous, next) => {
@@ -70,8 +70,13 @@ const App = () => {
   };
 
   const getData = async () => {
-    const data = await (await fetch(FETCH_PATH)).json();
-    divideData(data.response.body.items.item);
+    let data;
+    try {
+      data = await (await fetch(FETCH_PATH)).json();
+      divideData(data.response.body.items.item);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
