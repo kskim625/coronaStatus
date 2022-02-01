@@ -5,7 +5,7 @@ import path from 'path';
 import cors from 'cors';
 
 const app: express.Application = express();
-const PORT = process.env.PORT || 5000;
+const PORT = 8080;
 const corsOptions = {
   origin: ['http://localhost:3000', 'https://korea-corona-status-info.herokuapp.com'],
   credentials: true,
