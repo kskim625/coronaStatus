@@ -7,14 +7,14 @@
 ## 🛠️ Skills
 
 - React, TypeScript
-- 그래프: chart.js
+- 차트: chart.js
 
 ## 📖Data
 
 - From Open API [공공데이터포털](https://www.data.go.kr/)
 - data format: XML
-- React -> Express -> 공공데이터포털 request
-- 공공데이터포털 -> Express -> React response
+- request: React -> Express -> 공공데이터포털
+- response: 공공데이터포털 -> Express -> React
 
 ## 🖼️Images
 
@@ -26,6 +26,6 @@
 
 ![card](https://user-images.githubusercontent.com/83746849/151759103-d0267a11-cd41-44a8-8ea3-c39c910a5cbd.png)
 
-### 그래프
+### 차트
 
-![graph](https://user-images.githubusercontent.com/83746849/149618203-da0ee5e4-451e-486d-91fa-719e03fd473f.png)
+![chart]](https://user-images.githubusercontent.com/83746849/149618203-da0ee5e4-451e-486d-91fa-719e03fd473f.png)

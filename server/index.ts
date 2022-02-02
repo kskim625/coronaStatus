@@ -2,16 +2,10 @@ import express from 'express';
 import dataRouter from './router/dataRouter';
 import bodyParser from 'body-parser';
 import path from 'path';
-import cors from 'cors';
 
 const app: express.Application = express();
 const PORT = process.env.PORT || 5000;
-const corsOptions = {
-  origin: ['http://localhost:3000', 'https://korea-corona-status-info.herokuapp.com'],
-  credentials: true,
-};
 
-app.use(cors(corsOptions));
 app.use('/data', dataRouter);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

@@ -1,4 +1,3 @@
-import { XMLParser } from 'fast-xml-parser';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -56,7 +55,7 @@ const App = () => {
     });
   };
 
-  const divideData = (response: objectType[]) => {
+  const divideData = (response: objectType[] | undefined) => {
     if (response === undefined) return;
     sortData(response);
     const total = response.shift();
@@ -76,6 +75,7 @@ const App = () => {
       divideData(data.response.body.items.item);
     } catch (error) {
       console.log(error);
+      divideData(undefined);
     }
   };
 
