@@ -63,12 +63,12 @@
   }
 
   .status-card-location {
-    font-size: 0.8vw;
+    font-size: 5vw;
   }
 
   .status-card-info {
     margin: 2vh auto;
     width: 25vw;
-    font-size: 0.6vw;
+    font-size: 3vw;
   }
 }
