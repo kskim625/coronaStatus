@@ -16,6 +16,10 @@
   margin: auto 3px auto 15px;
 }
 
+.color-type-circle:first-child {
+  margin: auto 3px auto 0;
+}
+
 .color-type-black {
   background-color: rgb(0, 0, 0);
 }
