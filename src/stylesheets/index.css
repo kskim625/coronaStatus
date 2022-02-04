@@ -21,12 +21,9 @@ button {
 }
 
 @media screen and (max-width: 1200px) {
-  body {
-    font-size: 0.5vw;
-  }
-
+  body,
   button {
-    font-size: 0.5vw;
+    font-size: 3vw;
   }
 
   #wrap {
