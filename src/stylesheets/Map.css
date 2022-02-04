@@ -47,3 +47,22 @@
 .land-green:hover {
   opacity: 0.5;
 }
+
+@media screen and (max-width: 1200px) {
+  .map-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    min-width: 100vw;
+    transform: translateY(-30vh);
+  }
+
+  .map {
+    margin-top: 5vh;
+    transform: scale(0.7);
+  }
+
+  .card-set-map {
+    display: none;
+  }
+}

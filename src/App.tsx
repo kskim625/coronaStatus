@@ -62,7 +62,7 @@ const App = () => {
     const dataSet: objectType[][] = [];
     if (total !== undefined) dataSet.push([total]);
     response.map((r: objectType, i: number) => {
-      if (i % 4 === 0) dataSet.push([r]);
+      if (i % 3 === 0) dataSet.push([r]);
       else dataSet[dataSet.length - 1].push(r);
     });
     setData(dataSet);

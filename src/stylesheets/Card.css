@@ -20,3 +20,9 @@ body {
   margin-left: 175px;
   height: 800px;
 }
+
+@media screen and (max-width: 1200px) {
+  #wrapper {
+    min-width: 100vw;
+  }
+}

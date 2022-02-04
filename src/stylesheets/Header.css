@@ -56,3 +56,37 @@
   font-size: 35px;
   font-weight: 600;
 }
+
+@media screen and (max-width: 1200px) {
+  #header {
+    min-width: 100vw;
+  }
+
+  .header-image,
+  .header-dummy {
+    width: 10vw;
+  }
+
+  .header-description {
+    font-size: 7vw;
+  }
+
+  #header-buttons {
+    min-width: 100vw;
+    z-index: 1;
+  }
+
+  .header-btn {
+    margin: auto 1.5vw;
+    width: 20vw;
+  }
+
+  .header-date {
+    min-width: 100vw;
+  }
+
+  .header-error-msg {
+    min-width: 100vw;
+    font-size: 7vw;
+  }
+}

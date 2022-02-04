@@ -86,8 +86,8 @@ const Graph = ({ data }: { data: objectType[][] }) => {
 
   return (
     <div id="graph-set">
-      <canvas className="graph-one" width={575} height={700} ref={graphOneRef}></canvas>
-      <canvas className="graph-two" width={575} height={700} ref={graphTwoRef}></canvas>
+      <canvas className="graph-one" width={380} height={450} ref={graphOneRef}></canvas>
+      <canvas className="graph-two" width={380} height={450} ref={graphTwoRef}></canvas>
     </div>
   );
 };

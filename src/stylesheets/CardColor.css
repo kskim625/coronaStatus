@@ -35,3 +35,12 @@
 .color-type-green {
   background-color: rgb(0, 150, 0);
 }
+
+@media screen and (max-width: 1200px) {
+  #header-color-type {
+    margin-top: 3vh;
+    min-width: 100vw;
+    word-break: keep-all;
+    text-align: center;
+  }
+}
