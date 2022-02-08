@@ -68,10 +68,10 @@ const App = () => {
     setData(dataSet);
   };
 
-  const getData = async () => {
+  const getData = async (query: string) => {
     let data;
     try {
-      data = await (await fetch(FETCH_PATH)).json();
+      data = await (await fetch(FETCH_PATH + query)).json();
       divideData(data.response.body.items.item);
     } catch (error) {
       console.log(error);
@@ -80,12 +80,12 @@ const App = () => {
   };
 
   useEffect(() => {
-    getData();
+    getData('');
   }, []);
 
   return (
     <BrowserRouter>
-      <Header data={data} />
+      <Header data={data} getData={getData} />
       <Transition data={data} />
     </BrowserRouter>
   );

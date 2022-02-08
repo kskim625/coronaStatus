@@ -35,6 +35,7 @@
 .header-btn {
   width: 150px;
   height: 45px;
+  border: 1px #000 solid;
   margin: auto 20px;
   background-color: #fff;
   box-shadow: 5px 3px rgba(0, 0, 0, 0.2);
