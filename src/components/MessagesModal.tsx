@@ -7,6 +7,7 @@ const Messages = ({ data, getData }: { data: objectType[][]; getData: (query: st
   const [updateMessage] = useState<String>('데이터가 업데이트되는 중입니다.');
   const [timeMessage, setTimeMessage] = useState<String>('');
   const [buttonActive, setButtonActive] = useState<string>('modal-button-inactive');
+  const TIME_MESSAGE = '오전 0시 ~ 10시 사이에는 당일 데이터가 업데이트 되지 않을 수 있습니다.';
   const BUTTON_MESSAGE = '어제 데이터 불러오기';
 
   const getYesterday = (date: Date) => {
@@ -27,13 +28,15 @@ const Messages = ({ data, getData }: { data: objectType[][]; getData: (query: st
 
   useEffect(() => {
     if (data.length !== 0) {
-      setTimeMessage('');
-      setButtonActive('modal-button-active');
       return;
     }
     const hour: number = new Date().getHours();
     if (hour >= 0 && hour <= 10) {
-      setTimeMessage('오전 0시 ~ 10시 사이에는 데이터가 업데이트 되지 않을 수 있음을 참고 부탁드립니다.');
+      setTimeMessage(TIME_MESSAGE);
+      setButtonActive('modal-button-active');
+    } else {
+      setTimeMessage('');
+      setButtonActive('modal-button-inactive');
     }
   }, [data]);
 
