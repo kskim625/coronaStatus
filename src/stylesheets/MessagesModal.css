@@ -98,6 +98,7 @@
   }
 
   .modal-button-active {
+    padding: 0.5vh 0;
     margin: 28vh auto 0;
     width: 30vw;
     height: 5vh;
