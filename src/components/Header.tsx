@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import moment from 'moment';
 import flag from '../images/virus.svg';
 import leftArrow from '../images/leftArrow.svg';
 import rightArrow from '../images/rightArrow.svg';
@@ -8,27 +9,25 @@ import { objectType } from '../App';
 import '../stylesheets/Header.css';
 
 const Header = ({ data, getData }: { data: objectType[][]; getData: (query: string) => Promise<void> }) => {
-  const [date, setDate] = useState<Date>(new Date());
+  const [date, setDate] = useState<moment.Moment>(moment());
   const [modalStatus, setModalStatus] = useState<String>('init');
   const leftArrowRef = useRef<HTMLImageElement>(null);
 
-  const getNewDate = (newDate: Date) => {
-    let year = String(newDate.getFullYear());
-    let month = String(newDate.getMonth() + 1);
-    month = month.length === 1 ? '0' + month : month;
-    let day = String(newDate.getDate());
-    day = day.length === 1 ? '0' + day : day;
+  const getNewDate = (newDate: moment.Moment) => {
+    let year = String(newDate.format('YYYY'));
+    let month = String(newDate.format('MM'));
+    let day = String(newDate.format('DD'));
     return year + month + day;
   };
 
   const changeDate = async (e: React.MouseEvent) => {
     setModalStatus('load');
-    let newDate: Date = new Date();
-    if (date > new Date(2020, 3, 1) && leftArrowRef.current === e.target) {
-      newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1);
+    let newDate: moment.Moment = moment();
+    if (date > moment('01-03-2020', 'DD-MM-YYYY') && leftArrowRef.current === e.target) {
+      newDate = date.add(-1, 'days');
       setDate(newDate);
-    } else if (date < new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1)) {
-      newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+    } else if (date < moment().add(-1, 'days')) {
+      newDate = date.add(1, 'days');
       setDate(newDate);
     }
     const searchDate: string = getNewDate(newDate);
@@ -39,7 +38,7 @@ const Header = ({ data, getData }: { data: objectType[][]; getData: (query: stri
   useEffect(() => {
     if (data.length === 0) return;
     setModalStatus('finished');
-    setDate(new Date(data[0][0].createDt));
+    setDate(moment(data[0][0].createDt));
   }, [data]);
 
   return (
@@ -52,7 +51,7 @@ const Header = ({ data, getData }: { data: objectType[][]; getData: (query: stri
       <HeaderButtons />
       <div className="header-date">
         <img className="header-date-arrow" src={leftArrow} onClick={changeDate} ref={leftArrowRef}></img>
-        <div className="header-date-text">{`${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 0시 기준`}</div>
+        <div className="header-date-text">{`${date.format('YYYY')}년 ${date.format('MM')}월 ${date.format('DD')}일 0시 기준`}</div>
         <img className="header-date-arrow" src={rightArrow} onClick={changeDate}></img>
       </div>
       <MessagesModal data={data} modalStatus={modalStatus} getData={getData} />
