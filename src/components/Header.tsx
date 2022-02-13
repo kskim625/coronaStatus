@@ -11,7 +11,7 @@ const Header = ({ data, getData }: { data: objectType[][]; getData: (query: stri
   useEffect(() => {
     if (data.length === 0) return;
     setDate(new Date(data[0][0].createDt));
-  }, []);
+  }, [data]);
 
   return (
     <>

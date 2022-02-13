@@ -6,8 +6,9 @@ const dataRouter = Router();
 dataRouter.get('/corona', async (req: Request, res: Response, next: NextFunction) => {
   const SERVICE_URL = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson';
   const AUTHORIZATION_KEY = '?serviceKey=Fl9rhYMejA8nhCfRxunEiv8iCWEKK%2FAiNOgmkrp0onGw%2FGIpuTVQc7vH0Kmh%2BaiOeQ6SZSXjk8zaqOdbp9yYTg%3D%3D';
+  const additionalHeaders = req.query.startCreateDt ? `&startCreateDt=${req.query.startCreateDt}&endCreateDt=${req.query.endCreateDt}` : '';
 
-  const response = await axios.get(SERVICE_URL + AUTHORIZATION_KEY);
+  const response = await axios.get(SERVICE_URL + AUTHORIZATION_KEY + additionalHeaders);
   res.send(response.data);
 });
 

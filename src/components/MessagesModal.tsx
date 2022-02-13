@@ -23,7 +23,7 @@ const Messages = ({ data, getData }: { data: objectType[][]; getData: (query: st
   const getPastData = () => {
     const date: Date = new Date();
     const searchDate: string = getYesterday(date);
-    getData(`&startCreateDt=${searchDate}`);
+    getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
   };
 
   useEffect(() => {
