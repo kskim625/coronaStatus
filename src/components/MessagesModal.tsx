@@ -3,7 +3,7 @@ import { objectType } from '../App';
 import loading from '../images/loading.gif';
 import '../stylesheets/MessagesModal.css';
 
-const Messages = ({ data, getData }: { data: objectType[][]; getData: (query: string) => Promise<void> }) => {
+const MessagesModal = ({ data, modalStatus, getData }: { data: objectType[][]; modalStatus: String; getData: (query: string) => Promise<void> }) => {
   const [updateMessage] = useState<String>('데이터가 업데이트되는 중입니다.');
   const [timeMessage, setTimeMessage] = useState<String>('');
   const [buttonActive, setButtonActive] = useState<string>('modal-button-inactive');
@@ -27,9 +27,6 @@ const Messages = ({ data, getData }: { data: objectType[][]; getData: (query: st
   };
 
   useEffect(() => {
-    if (data.length !== 0) {
-      return;
-    }
     const hour: number = new Date().getHours();
     if (hour >= 0 && hour <= 10) {
       setTimeMessage(TIME_MESSAGE);
@@ -40,7 +37,7 @@ const Messages = ({ data, getData }: { data: objectType[][]; getData: (query: st
     }
   }, [data]);
 
-  return data.length === 0 ? (
+  return modalStatus !== 'finished' ? (
     <div id="modal-message">
       <div className="modal-message-modal">
         <img className="modal-loading-gif" src={loading}></img>
@@ -56,4 +53,4 @@ const Messages = ({ data, getData }: { data: objectType[][]; getData: (query: st
   );
 };
 
-export default Messages;
+export default MessagesModal;

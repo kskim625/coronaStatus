@@ -13,6 +13,7 @@ const Graph = ({ data }: { data: objectType[][] }) => {
   const [labels, setLabels] = useState<string[]>([]);
   const [datasetsOne, setDatasetsOne] = useState<datasetsType[]>([]);
   const [datasetsTwo, setDatasetsTwo] = useState<datasetsType[]>([]);
+  const [charts, setCharts] = useState<Chart[]>([]);
   const graphOneRef = useRef<HTMLCanvasElement>(null);
   const graphTwoRef = useRef<HTMLCanvasElement>(null);
 
@@ -25,6 +26,10 @@ const Graph = ({ data }: { data: objectType[][] }) => {
   const deathCnt: number[] = [];
 
   const setData = () => {
+    labelsTemp.length = 0;
+    incDec.length = 0;
+    isolClearCnt.length = 0;
+    deathCnt.length = 0;
     data.forEach((dataSet) => {
       dataSet.map((d) => {
         labelsTemp.push(d.gubun);
@@ -36,7 +41,7 @@ const Graph = ({ data }: { data: objectType[][] }) => {
   };
 
   const drawChart = (ctx: CanvasRenderingContext2D, text: string, datasets: datasetsType[]) => {
-    new Chart(ctx, {
+    const chart = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: labels,
@@ -52,6 +57,7 @@ const Graph = ({ data }: { data: objectType[][] }) => {
         responsive: false,
       },
     });
+    setCharts((c) => [...c, chart]);
   };
 
   const clearCtx = () => {
@@ -63,16 +69,30 @@ const Graph = ({ data }: { data: objectType[][] }) => {
     ctxTwo.clearRect(0, 0, graphTwoRef.current.width, graphTwoRef.current.height);
   };
 
-  useEffect(() => {
+  const setDatasets = () => {
     clearCtx();
     setData();
     datasetsOneTemp.push({ label: '신규 확진자 수', backgroundColor: '#3e95cd', data: incDec });
     datasetsOneTemp.push({ label: '누적 사망자 수', backgroundColor: '#8e5ea2', data: deathCnt });
     datasetsTwoTemp.push({ label: '격리 해제', backgroundColor: '#000', data: isolClearCnt });
     setLabels(labelsTemp);
+  };
+
+  useEffect(() => {
+    setDatasets();
     setDatasetsOne(datasetsOneTemp);
     setDatasetsTwo(datasetsTwoTemp);
   }, []);
+
+  useEffect(() => {
+    if (charts.length >= 2) {
+      setDatasets();
+      charts[0].data.datasets = datasetsOneTemp;
+      charts[1].data.datasets = datasetsTwoTemp;
+      charts[0].update();
+      charts[1].update();
+    }
+  }, [data]);
 
   useEffect(() => {
     if (datasetsOne.length === 0 || datasetsTwo.length === 0) return;

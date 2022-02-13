@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   min-width: 1200px;
-  transform: translateY(-100px);
 }
 
 .map {
@@ -54,7 +53,6 @@
     flex-direction: column-reverse;
     align-items: center;
     min-width: 100vw;
-    transform: translateY(-30vh);
   }
 
   .map {
