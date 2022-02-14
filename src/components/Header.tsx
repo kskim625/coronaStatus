@@ -10,13 +10,13 @@ import '../stylesheets/Header.css';
 
 const Header = ({ data, getData }: { data: objectType[][]; getData: (query: string) => Promise<void> }) => {
   const [date, setDate] = useState<moment.Moment>(moment());
-  const [modalStatus, setModalStatus] = useState<String>('init');
+  const [modalStatus, setModalStatus] = useState<string>('init');
   const leftArrowRef = useRef<HTMLImageElement>(null);
 
   const getNewDate = (newDate: moment.Moment) => {
-    let year = String(newDate.format('YYYY'));
-    let month = String(newDate.format('MM'));
-    let day = String(newDate.format('DD'));
+    let year = newDate.format('YYYY');
+    let month = newDate.format('MM');
+    let day = newDate.format('DD');
     return year + month + day;
   };
 
