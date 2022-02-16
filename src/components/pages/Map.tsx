@@ -1,10 +1,10 @@
-import React, { useState, useLayoutEffect, useEffect } from 'react';
-import { objectType } from '../App';
-import { ReactComponent as KoreaMap } from '../images/koreaMap.svg';
-import CardColor from './CardColor';
-import StatusCard from './StatusCard';
-import { setCardColor } from './StatusCard';
-import '../stylesheets/Map.css';
+import React, { useState, useEffect } from 'react';
+import { objectType } from '../../App';
+import { ReactComponent as KoreaMap } from '../../images/koreaMap.svg';
+import CardColor from '../card/CardColor';
+import StatusCard from '../card/StatusCard';
+import { setCardColor } from '../card/StatusCard';
+import '../../stylesheets/Map.css';
 
 const Map = ({ data }: { data: objectType[][] }) => {
   const [locData, setLocData] = useState<objectType[]>([]);

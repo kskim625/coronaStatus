@@ -1,6 +1,6 @@
 import React, { useState, useLayoutEffect } from 'react';
-import { objectType } from '../App';
-import '../stylesheets/StatusCard.css';
+import { objectType } from '../../App';
+import '../../stylesheets/StatusCard.css';
 
 const INC_DEC_CONSTANTS = {
   severe: 1000,

@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router';
-import map from '../images/map.jpg';
-import card from '../images/card.jpg';
-import graph from '../images/graph.jpg';
-import '../stylesheets/Main.css';
+import map from '../../images/map.jpg';
+import card from '../../images/card.jpg';
+import graph from '../../images/graph.jpg';
+import '../../stylesheets/Main.css';
 
 const Main = () => {
   const navigate = useNavigate();

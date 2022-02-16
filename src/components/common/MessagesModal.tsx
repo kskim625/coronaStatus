@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import moment from 'moment';
-import { objectType } from '../App';
-import loading from '../images/loading.gif';
-import '../stylesheets/MessagesModal.css';
+import { objectType } from '../../App';
+import loading from '../../images/loading.gif';
+import '../../stylesheets/MessagesModal.css';
 
 const MessagesModal = ({ data, modalStatus, getData }: { data: objectType[][]; modalStatus: string; getData: (query: string) => Promise<void> }) => {
   const [updateMessage] = useState<string>('데이터가 업데이트되는 중입니다.');

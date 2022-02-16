@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import moment from 'moment';
-import flag from '../images/virus.svg';
-import leftArrow from '../images/leftArrow.svg';
-import rightArrow from '../images/rightArrow.svg';
+import flag from '../../images/virus.svg';
+import leftArrow from '../../images/leftArrow.svg';
+import rightArrow from '../../images/rightArrow.svg';
 import HeaderButtons from './HeaderButtons';
-import MessagesModal from './MessagesModal';
-import { objectType } from '../App';
-import '../stylesheets/Header.css';
+import MessagesModal from '../common/MessagesModal';
+import { objectType } from '../../App';
+import '../../stylesheets/Header.css';
 
 const Header = ({ data, getData }: { data: objectType[][]; getData: (query: string) => Promise<void> }) => {
   const [date, setDate] = useState<moment.Moment>(moment());

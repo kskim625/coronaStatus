@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import Header from './components/Header';
-import Main from './components/Main';
-import Card from './components/Card';
-import Map from './components/Map';
-import Graph from './components/Graph';
+import Header from './components/header/Header';
+import Main from './components/pages/Main';
+import Card from './components/pages/Card';
+import Map from './components/pages/Map';
+import Graph from './components/pages/Graph';
 import './stylesheets/Transition.css';
 
 export interface objectType {

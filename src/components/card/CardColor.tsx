@@ -1,4 +1,4 @@
-import '../stylesheets/CardColor.css';
+import '../../stylesheets/CardColor.css';
 
 const CardColor = () => {
   const colorList = ['black', 'red', 'yellow', 'blue', 'green'];
