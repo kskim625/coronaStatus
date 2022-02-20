@@ -24,15 +24,20 @@ const HeaderDateInfo = ({ data, setModalStatus, getData }: headerDateInfoType) =
   const changeDate = async (e: React.MouseEvent) => {
     setModalStatus('load');
     let newDate: moment.Moment = moment();
+    let changed: boolean = false;
     if (date > moment('01-03-2020', 'DD-MM-YYYY') && leftArrowRef.current === e.target) {
       newDate = date.add(-1, 'days');
+      changed = true;
       setDate(newDate);
     } else if (date < moment().add(-1, 'days')) {
       newDate = date.add(1, 'days');
+      changed = true;
       setDate(newDate);
     }
-    const searchDate: string = getNewDate(newDate);
-    await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
+    if (changed) {
+      const searchDate: string = getNewDate(newDate);
+      await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
+    }
     setModalStatus('finished');
   };
 
