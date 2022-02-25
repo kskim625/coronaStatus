@@ -19,13 +19,10 @@
 ## 🖼️Images
 
 ### 지도
-
-![image](https://user-images.githubusercontent.com/83746849/152102764-4504a75b-4a13-428c-9ead-fccd5b3bb8f4.png)
+![map](https://user-images.githubusercontent.com/83746849/155676524-02067869-664c-4dbc-a405-3d85a2609f1a.png)
 
 ### 카드
-
-![image](https://user-images.githubusercontent.com/83746849/152102738-bb86c43d-70ef-42b4-a4ef-a4dfd103fb18.png)
+![card](https://user-images.githubusercontent.com/83746849/155676565-2f0d7f8c-e2fc-4be5-ab3f-17aa01063d7d.png)
 
 ### 차트
-
-![image](https://user-images.githubusercontent.com/83746849/152102696-5b1b3cbe-e3f4-4ec4-9e81-1ad13b4b991c.png)
+![chart](https://user-images.githubusercontent.com/83746849/155676613-5be6aaa6-4fe8-4f56-98e2-50ff3967c8f7.png)
