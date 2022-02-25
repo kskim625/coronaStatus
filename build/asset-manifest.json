@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/static/css/main.871ef096.css",
-    "main.js": "/static/js/main.ad486ed8.js",
+    "main.js": "/static/js/main.37c7a809.js",
     "static/js/787.e5b195cf.chunk.js": "/static/js/787.e5b195cf.chunk.js",
     "static/media/loading.gif": "/static/media/loading.706124a2c0232f216d63.gif",
     "static/media/koreaMap.svg": "/static/media/koreaMap.e5a5a24fcac87c19a1c4fc7e4845156b.svg",
     "static/media/graph.jpg": "/static/media/graph.c30e6777e8f0f25f0f2f.jpg",
     "static/media/map.jpg": "/static/media/map.55eb6b08c030f793f88b.jpg",
-    "static/media/card.jpg": "/static/media/card.bacb3cb2e74fc78170c4.jpg",
+    "static/media/card.jpg": "/static/media/card.ecc3bdfb1ccb49a35426.jpg",
     "static/media/virus.svg": "/static/media/virus.58175f40f50ef83fc8ae8fb4c9cba502.svg",
     "index.html": "/index.html",
     "static/media/leftArrow.svg": "/static/media/leftArrow.7af8e411edea819983d6eb718fa2fc00.svg",
     "static/media/rightArrow.svg": "/static/media/rightArrow.8b8832014eb6b1e46bde354447db7847.svg",
     "main.871ef096.css.map": "/static/css/main.871ef096.css.map",
-    "main.ad486ed8.js.map": "/static/js/main.ad486ed8.js.map",
+    "main.37c7a809.js.map": "/static/js/main.37c7a809.js.map",
     "787.e5b195cf.chunk.js.map": "/static/js/787.e5b195cf.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.871ef096.css",
-    "static/js/main.ad486ed8.js"
+    "static/js/main.37c7a809.js"
   ]
 }
