@@ -22,19 +22,16 @@ const Graph = ({ data }: { data: objectType[][] }) => {
   const datasetsOneTemp: datasetsType[] = [];
   const datasetsTwoTemp: datasetsType[] = [];
   const incDec: number[] = [];
-  const isolClearCnt: number[] = [];
   const deathCnt: number[] = [];
 
   const setData = () => {
     labelsTemp.length = 0;
     incDec.length = 0;
-    isolClearCnt.length = 0;
     deathCnt.length = 0;
     data.forEach((dataSet) => {
       dataSet.map((d) => {
         labelsTemp.push(d.gubun);
         incDec.push(d.incDec);
-        isolClearCnt.push(d.isolClearCnt);
         deathCnt.push(d.deathCnt);
       });
     });
@@ -73,8 +70,7 @@ const Graph = ({ data }: { data: objectType[][] }) => {
     clearCtx();
     setData();
     datasetsOneTemp.push({ label: '신규 확진자 수', backgroundColor: '#3e95cd', data: incDec });
-    datasetsOneTemp.push({ label: '누적 사망자 수', backgroundColor: '#8e5ea2', data: deathCnt });
-    datasetsTwoTemp.push({ label: '격리 해제', backgroundColor: '#000', data: isolClearCnt });
+    datasetsTwoTemp.push({ label: '누적 사망자 수', backgroundColor: '#8e5ea2', data: deathCnt });
     setLabels(labelsTemp);
   };
 
@@ -100,8 +96,8 @@ const Graph = ({ data }: { data: objectType[][] }) => {
     const ctxOne = graphOneRef.current.getContext('2d');
     const ctxTwo = graphTwoRef.current.getContext('2d');
     if (!ctxOne || !ctxTwo) return;
-    drawChart(ctxOne, '코로나 오늘 확진자 / 누적 사망자 추이', datasetsOne);
-    drawChart(ctxTwo, '코로나 완치자 추이', datasetsTwo);
+    drawChart(ctxOne, '코로나 오늘 확진자', datasetsOne);
+    drawChart(ctxTwo, '누적 사망자 추이', datasetsTwo);
   }, [datasetsOne]);
 
   return (

@@ -33,7 +33,6 @@ const StatusCard = ({ dataSet, from }: { dataSet: objectType[]; from: string }) 
             <div className="status-card-location">{data.gubun === '검역' ? '해외' : data.gubun}</div>
             <div className="status-card-info">
               <div className="status-card-info-content">{`신규 확진자 수 : ${data.incDec.toLocaleString()}명`}</div>
-              <div className="status-card-info-content">{`격리 해제 : ${data.isolClearCnt.toLocaleString()}명`}</div>
               <div className="status-card-info-content">{`누적 사망자 수 : ${data.deathCnt.toLocaleString()}명`}</div>
             </div>
           </div>
