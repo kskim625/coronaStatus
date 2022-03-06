@@ -23,7 +23,7 @@ const Header = ({ data, getData }: { data: objectType[][]; getData: (query: stri
     <>
       <UpperHeader />
       <HeaderButtons />
-      <HeaderDateInfo data={data} setModalStatus={setModalStatus} getData={getData} />
+      <HeaderDateInfo data={data} modalStatus={modalStatus} setModalStatus={setModalStatus} getData={getData} />
       <MessagesModal data={data} modalStatus={modalStatus} getData={getData} />
     </>
   );
