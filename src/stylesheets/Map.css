@@ -56,12 +56,12 @@
     flex-direction: column-reverse;
     align-items: center;
     min-width: 100vw;
-    transform: translateY(-30vh);
+    transform: scaleX(0.6) translateX(-40vw) translateY(-30vh);
   }
 
   .map {
     margin-top: 5vh;
-    transform: scale(0.7);
+    transform: scaleY(0.6);
   }
 
   .card-set-map {

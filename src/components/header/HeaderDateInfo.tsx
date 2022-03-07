@@ -40,6 +40,7 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerDa
       setDate(newDate);
     }
     if (changed) {
+      setModalStatus(MODAL_STATUS.INIT);
       const searchDate: string = getNewDate(newDate);
       await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
     }

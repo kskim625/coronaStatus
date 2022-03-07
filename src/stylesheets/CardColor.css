@@ -42,8 +42,9 @@
 
 @media screen and (max-width: 1200px) {
   #header-color-type {
+    padding: 0 2.5vw;
     margin-top: 3vh;
-    min-width: 100vw;
+    min-width: 95vw;
     word-break: keep-all;
     text-align: center;
   }
