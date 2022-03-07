@@ -36,7 +36,7 @@
 .header-date-move {
   position: absolute;
   width: 100vw;
-  height: 100vh;
+  height: fit-content;
   left: 0;
   right: 0;
   z-index: 200;
@@ -45,7 +45,7 @@
 .header-date-modal {
   position: absolute;
   margin: 3vh auto;
-  width: 35vw;
+  width: fit-content;
   left: 0;
   right: 0;
   background-color: #fff;
