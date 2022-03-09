@@ -23,3 +23,6 @@
 
 ### 차트
 ![chart](https://user-images.githubusercontent.com/83746849/155677009-94b90b9c-0f99-4028-8492-ad9e0f0a8d81.png)
+
+### 날짜 이동
+![move](https://user-images.githubusercontent.com/83746849/157453832-293eca4c-f55d-4b9f-a859-6f96bf35d7a1.png)
