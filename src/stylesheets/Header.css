@@ -1,19 +1,16 @@
 #header {
   display: flex;
   justify-content: space-between;
-  font-size: 50px;
+  font-size: 25px;
   font-weight: 600;
-  padding: 15px;
+  padding: 5px 25px 5px;
+  margin: 0 25px;
   min-width: 1200px;
 }
 
 #header-buttons {
   display: flex;
   justify-content: center;
-  padding: 25px 0;
-  min-width: 1200px;
-  border-top: 5px rgba(0, 0, 0, 0.1) solid;
-  border-bottom: 10px rgba(0, 0, 0, 0.1) solid;
 }
 
 .header-date {
@@ -104,13 +101,14 @@
 }
 
 .header-btn {
-  width: 150px;
-  height: 45px;
-  border: 1px #000 solid;
+  width: 60px;
+  height: 30px;
+  line-height: 30px;
+  border: none;
   margin: auto 20px;
   background-color: #fff;
-  box-shadow: 5px 3px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  font-size: 18px;
   font-weight: 600;
   transition: 0.3s;
   z-index: 100;

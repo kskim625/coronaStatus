@@ -3,6 +3,7 @@ import { useLocation } from 'react-router';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 import Main from './components/pages/Main';
 import Card from './components/pages/Card';
 import Map from './components/pages/Map';
@@ -87,6 +88,7 @@ const App = () => {
     <BrowserRouter>
       <Header data={data} getData={getData} />
       <Transition data={data} />
+      <Footer />
     </BrowserRouter>
   );
 };

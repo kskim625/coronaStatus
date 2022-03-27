@@ -1,13 +1,14 @@
 #main {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   min-width: 1200px;
-  height: 101vh;
+  height: fit-content;
   margin: 100px auto 0;
 }
 
 .main-btn {
   height: fit-content;
+  margin: 0 5px;
 }
 
 .main-image-btn {

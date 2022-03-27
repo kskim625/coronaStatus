@@ -17,4 +17,6 @@
 
 .transition-group {
   position: relative;
+  min-height: 75vh;
+  z-index: 1;
 }

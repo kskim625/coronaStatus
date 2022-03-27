@@ -22,16 +22,16 @@ const HeaderButtons = () => {
   return (
     <div id="header-buttons">
       <button className="btn-redirect-map header-btn" onClick={redirectToMap}>
-        지도로 보기
+        지도
       </button>
       <button className="btn-redirect-card header-btn" onClick={redirectToCard}>
-        카드로 보기
+        카드
       </button>
       <button className="btn-redirect-graph header-btn" onClick={redirectToGraph}>
-        그래프로 보기
+        그래프
       </button>
       <button className="btn-redirect-main header-btn" onClick={redirectToMain}>
-        메인으로 돌아가기
+        메인
       </button>
     </div>
   );
