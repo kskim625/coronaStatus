@@ -25,4 +25,4 @@
 ![chart](https://user-images.githubusercontent.com/83746849/155677009-94b90b9c-0f99-4028-8492-ad9e0f0a8d81.png)
 
 ### 날짜 이동
-![move](https://user-images.githubusercontent.com/83746849/157453832-293eca4c-f55d-4b9f-a859-6f96bf35d7a1.png)
+![image](https://user-images.githubusercontent.com/83746849/168807857-028e1590-64c1-4e24-9351-c8dca00de964.png)
