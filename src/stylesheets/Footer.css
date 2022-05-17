@@ -1,8 +1,12 @@
 #footer {
-  display: flex;
-  justify-content: space-around;
-  border-top: 1px solid rgb(0, 0, 0, 0.2);
-  margin-top: 35px;
+  position: fixed;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  background-color: #fff;
 }
 
 .footer-link {

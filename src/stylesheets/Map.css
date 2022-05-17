@@ -1,10 +1,8 @@
 .map-wrapper {
   display: flex;
   justify-content: center;
-  position: absolute;
   min-width: 1200px;
   transform: translateY(-100px);
-  z-index: -1;
 }
 
 .map {
