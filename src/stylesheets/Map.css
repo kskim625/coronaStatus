@@ -51,10 +51,11 @@
 @media screen and (max-width: 1200px) {
   .map-wrapper {
     display: flex;
+    position: fixed;
     flex-direction: column-reverse;
     align-items: center;
     min-width: 100vw;
-    transform: scaleX(0.6) translateX(-40vw) translateY(-30vh);
+    transform: scaleX(0.6) translateX(-25%) translateY(-28%);
   }
 
   .map {
