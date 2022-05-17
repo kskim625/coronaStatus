@@ -1,8 +1,10 @@
 .map-wrapper {
   display: flex;
   justify-content: center;
+  position: absolute;
   min-width: 1200px;
   transform: translateY(-100px);
+  z-index: -1;
 }
 
 .map {
@@ -46,4 +48,23 @@
 .land-blue:hover,
 .land-green:hover {
   opacity: 0.5;
+}
+
+@media screen and (max-width: 1200px) {
+  .map-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    min-width: 100vw;
+    transform: scaleX(0.6) translateX(-40vw) translateY(-30vh);
+  }
+
+  .map {
+    margin-top: 5vh;
+    transform: scaleY(0.6);
+  }
+
+  .card-set-map {
+    display: none;
+  }
 }

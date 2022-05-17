@@ -1,0 +1,106 @@
+#modal-message {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100vw;
+  height: 140vh;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.modal-message-modal {
+  position: fixed;
+  background-color: #fff;
+  border: #000 1px solid;
+  margin: auto;
+  width: 680px;
+  height: 600px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.modal-loading-gif {
+  position: absolute;
+  margin: 65px auto 0;
+  width: 150px;
+  height: 150px;
+  left: 0;
+  right: 0;
+}
+
+.modal-loading-message,
+.modal-time-message {
+  position: absolute;
+  width: fit-content;
+  left: 0;
+  right: 0;
+  text-align: center;
+  word-break: keep-all;
+}
+
+.modal-loading-message {
+  margin: 330px auto 0;
+  font-size: 45px;
+}
+
+.modal-time-message {
+  margin: 420px auto 0;
+}
+
+.modal-button-active {
+  position: absolute;
+  border: 1px #000 solid;
+  margin: 480px auto 0;
+  width: 150px;
+  height: 75px;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 5px 3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.modal-button-active:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.modal-button-inactive {
+  display: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .modal-message-modal {
+    width: 75vw;
+    height: 37.5vh;
+  }
+
+  .modal-loading-gif {
+    margin: 6vh auto 0;
+    width: 10vw;
+    height: 10vw;
+  }
+
+  .modal-loading-message {
+    margin: 17vh auto 0;
+    font-size: 3.5vw;
+  }
+
+  .modal-time-message {
+    margin: 22vh auto 0;
+    font-size: 2.5vw;
+  }
+
+  .modal-button-active {
+    padding: 0.5vh 0;
+    margin: 28vh auto 0;
+    width: 30vw;
+    height: 5vh;
+  }
+}

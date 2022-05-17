@@ -1,30 +1,28 @@
 # 코로나 현황판 프로젝트
 
 ## 🔗 Deploy Link
-
-- [kcsi.site](http://www.kcsi.site)
-- 공공데이터포털 open API가 http 프로토콜만 제공하여 http 사용 (SSL 미적용)
+- [heroku app 배포](https://korea-corona-status-info.herokuapp.com/)
 
 ## 🛠️ Skills
-
 - React, TypeScript
-- 그래프: chart.js
+- 차트: chart.js
 
 ## 📖Data
-
 - From Open API [공공데이터포털](https://www.data.go.kr/)
 - data format: XML
+- request: React -> Express -> 공공데이터포털
+- response: 공공데이터포털 -> Express -> React
 
 ## 🖼️Images
 
 ### 지도
-
-![map](https://user-images.githubusercontent.com/83746849/151759053-65a8fad4-7401-4354-8c02-811b1ebac383.png)
+![map](https://user-images.githubusercontent.com/83746849/155676934-e36f44d5-004a-4cf9-af72-121486d83fc6.png)
 
 ### 카드
+![card](https://user-images.githubusercontent.com/83746849/155676981-25e556b2-fa29-4573-bd47-6cf3e41f8cf1.png)
 
-![card](https://user-images.githubusercontent.com/83746849/151759103-d0267a11-cd41-44a8-8ea3-c39c910a5cbd.png)
+### 차트
+![chart](https://user-images.githubusercontent.com/83746849/155677009-94b90b9c-0f99-4028-8492-ad9e0f0a8d81.png)
 
-### 그래프
-
-![graph](https://user-images.githubusercontent.com/83746849/149618203-da0ee5e4-451e-486d-91fa-719e03fd473f.png)
+### 날짜 이동
+![move](https://user-images.githubusercontent.com/83746849/157453832-293eca4c-f55d-4b9f-a859-6f96bf35d7a1.png)

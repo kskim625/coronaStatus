@@ -55,3 +55,30 @@
 .status-card-info-content {
   margin: 5px 10px;
 }
+
+@media screen and (max-width: 1200px) {
+  .status-card {
+    width: 30vw;
+    margin: 0 1vw;
+  }
+
+  .status-card-location {
+    font-size: 3vw;
+  }
+
+  .status-card-info {
+    margin: 2vh auto;
+    width: 25vw;
+    font-size: 2vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .status-card-location {
+    font-size: 5vw;
+  }
+
+  .status-card-info {
+    font-size: 3vw;
+  }
+}

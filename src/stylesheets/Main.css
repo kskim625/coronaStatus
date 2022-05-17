@@ -1,9 +1,14 @@
 #main {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   min-width: 1200px;
-  height: 101vh;
-  margin: 100px auto;
+  height: fit-content;
+  margin: 100px auto 0;
+}
+
+.main-btn {
+  height: fit-content;
+  margin: 0 5px;
 }
 
 .main-image-btn {
@@ -24,4 +29,21 @@
 
 .main-image-btn:hover {
   transform: scale(1.05) translateY(10px);
+}
+
+@media screen and (max-width: 1200px) {
+  #main {
+    margin: 5vh auto 0;
+    min-width: 100vw;
+  }
+
+  .main-btn-description {
+    font-size: 3vw;
+  }
+
+  .main-image-btn {
+    width: 20vw;
+    height: 20vw;
+    padding: 3vw;
+  }
 }

@@ -1,7 +1,7 @@
-import CardColor from './CardColor';
-import StatusCard from './StatusCard';
-import { objectType } from '../App';
-import '../stylesheets/Card.css';
+import CardColor from '../card/CardColor';
+import StatusCard from '../card/StatusCard';
+import { objectType } from '../../App';
+import '../../stylesheets/Card.css';
 
 const Card = ({ data }: { data: objectType[][] }) => {
   return (

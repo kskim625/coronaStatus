@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import Header from './components/Header';
-import Main from './components/Main';
-import Card from './components/Card';
-import Map from './components/Map';
-import Graph from './components/Graph';
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
+import Main from './components/pages/Main';
+import Card from './components/pages/Card';
+import Map from './components/pages/Map';
+import Graph from './components/pages/Graph';
 import './stylesheets/Transition.css';
 
 export interface objectType {
@@ -28,6 +29,7 @@ export interface objectType {
 
 const Transition = ({ data }: { data: objectType[][] }) => {
   const location = useLocation();
+
   return (
     <TransitionGroup className="transition-group">
       <CSSTransition key={location.key} timeout={500} classNames="page-slider">
@@ -44,7 +46,7 @@ const Transition = ({ data }: { data: objectType[][] }) => {
 
 const App = () => {
   const [data, setData] = useState<objectType[][]>([]);
-  const FETCH_URL = 'http://localhost:5000/data/corona';
+  const FETCH_PATH = 'data/corona';
 
   const sortData = (response: objectType[]) => {
     response.sort((previous, next) => {
@@ -54,32 +56,39 @@ const App = () => {
     });
   };
 
-  const divideData = (response: objectType[], dataSet: objectType[][]) => {
+  const divideData = (response: objectType[] | undefined) => {
     if (response === undefined) return;
     sortData(response);
     const total = response.shift();
+    const dataSet: objectType[][] = [];
     if (total !== undefined) dataSet.push([total]);
     response.map((r: objectType, i: number) => {
-      if (i % 4 === 0) dataSet.push([r]);
+      if (i % 3 === 0) dataSet.push([r]);
       else dataSet[dataSet.length - 1].push(r);
     });
     setData(dataSet);
   };
 
-  const getData = async () => {
-    const data = await (await fetch(FETCH_URL)).json();
-    const dataSet: objectType[][] = [];
-    divideData(data.response.body.items.item, dataSet);
+  const getData = async (query: string) => {
+    let data;
+    try {
+      data = await (await fetch(FETCH_PATH + query)).json();
+      divideData(data.response.body.items.item);
+    } catch (error) {
+      console.log(error);
+      divideData(undefined);
+    }
   };
 
   useEffect(() => {
-    getData();
+    getData('');
   }, []);
 
   return (
     <BrowserRouter>
-      <Header data={data} />
+      <Header data={data} getData={getData} />
       <Transition data={data} />
+      <Footer />
     </BrowserRouter>
   );
 };

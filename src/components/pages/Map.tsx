@@ -1,13 +1,14 @@
-import React, { useState, useLayoutEffect, useEffect } from 'react';
-import { objectType } from '../App';
-import { ReactComponent as KoreaMap } from '../images/koreaMap.svg';
-import CardColor from './CardColor';
-import StatusCard from './StatusCard';
-import { setCardColor } from './StatusCard';
-import '../stylesheets/Map.css';
+import React, { useState, useEffect } from 'react';
+import { objectType } from '../../App';
+import { ReactComponent as KoreaMap } from '../../images/koreaMap.svg';
+import CardColor from '../card/CardColor';
+import StatusCard from '../card/StatusCard';
+import { setCardColor } from '../card/StatusCard';
+import '../../stylesheets/Map.css';
 
 const Map = ({ data }: { data: objectType[][] }) => {
   const [locData, setLocData] = useState<objectType[]>([]);
+  const classLists: string[] = ['land-black', 'land-red', 'land-yellow', 'land-blue', 'land-green'];
 
   const replaceAll = (strTemp: string, strValue1: string, strValue2: string) => {
     while (true) {
@@ -37,8 +38,11 @@ const Map = ({ data }: { data: objectType[][] }) => {
     data.forEach((dataSet) => {
       dataSet.map((d) => {
         const locUnicode = document.getElementById(toUnicode(d.gubun));
-        if (locUnicode && locUnicode.classList.length < 2) {
-          locUnicode.classList.toggle(`land-${setCardColor(d.incDec)}`);
+        if (locUnicode) {
+          classLists.forEach((classList) => {
+            locUnicode.classList.remove(classList);
+          });
+          locUnicode.classList.add(`land-${setCardColor(d.incDec)}`);
         }
       });
     });
@@ -48,7 +52,7 @@ const Map = ({ data }: { data: objectType[][] }) => {
     if (data.length === 0) return;
     setLocData([data[0][0]]);
     setMapColor();
-  }, []);
+  }, [data]);
 
   return (
     <div id="map">
