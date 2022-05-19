@@ -1,8 +1,8 @@
 #graph-set {
   display: flex;
   justify-content: space-around;
+  margin-top: 10%;
   min-width: 1200px;
-  margin-top: 50px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -10,6 +10,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: -10%;
     min-width: 100vw;
+    transform: scale(0.8);
   }
 }
