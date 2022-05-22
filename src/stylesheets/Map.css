@@ -55,7 +55,7 @@
     flex-direction: column-reverse;
     align-items: center;
     min-width: 100vw;
-    transform: scaleX(0.6) translateX(-25%) translateY(-28%);
+    transform: scaleX(0.5) scaleY(0.8) translateX(-30%) translateY(-38%);
   }
 
   .map {
