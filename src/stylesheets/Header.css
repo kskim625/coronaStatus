@@ -30,6 +30,8 @@
 }
 
 .header-date-text {
+  display: flex;
+  align-items: center;
   cursor: pointer;
 }
 

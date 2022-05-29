@@ -31,7 +31,7 @@
   transform: scale(1.05) translateY(10px);
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 960px) {
   #main {
     margin: 5vh auto 0;
     min-width: 100vw;

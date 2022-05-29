@@ -75,7 +75,7 @@
   display: none;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 960px) {
   .modal-message-modal {
     width: 75vw;
     height: 37.5vh;
