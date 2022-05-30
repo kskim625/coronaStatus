@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   margin-top: 45px;
-  min-width: 400px;
+  min-width: 300px;
   text-align: center;
   transition: 0.5s;
   opacity: 0;
@@ -14,7 +14,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  min-width: 400px;
+  min-width: 300px;
   height: fit-content;
   margin: 100px auto 0;
   opacity: 0;

@@ -17,7 +17,7 @@ button {
 }
 
 #wrap {
-  min-width: 400px;
+  min-width: 300px;
   margin: 0 auto;
   opacity: 0;
   animation: wrapAppears 1s forwards;
@@ -50,7 +50,6 @@ button {
   }
 
   #wrap {
-    min-width: 100%;
     word-break: keep-all;
   }
 }

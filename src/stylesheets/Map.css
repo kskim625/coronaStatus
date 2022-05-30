@@ -7,7 +7,7 @@
 .map-wrapper {
   display: flex;
   justify-content: center;
-  min-width: 400px;
+  min-width: 300px;
   transform: translateY(-100px);
 }
 
