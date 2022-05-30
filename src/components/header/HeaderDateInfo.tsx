@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, SetStateAction } from 'react';
+import { useState, useRef, useEffect, Dispatch, SetStateAction } from 'react';
 import moment from 'moment';
 import { objectType } from '../../App';
 import { MODAL_MESSAGES, MODAL_STATUS } from '../../util/constants';
@@ -8,7 +8,7 @@ import rightArrow from '../../images/rightArrow.svg';
 interface headerDateInfoType {
   data: objectType[][];
   modalStatus: string;
-  setModalStatus: React.Dispatch<SetStateAction<string>>;
+  setModalStatus: Dispatch<SetStateAction<string>>;
   getData: (query: string) => Promise<void>;
 }
 
@@ -120,8 +120,23 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerDa
     }
   };
 
+  const getYesterday = () => {
+    const yesterday = moment().add(-1, 'days');
+    let year: string = yesterday.format('YYYY');
+    let month: string = yesterday.format('MM');
+    let day: string = yesterday.format('DD');
+    return year + month + day;
+  };
+
+  const getPastData = async () => {
+    const searchDate: string = getYesterday();
+    await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
+  };
+
   useEffect(() => {
-    if (data.length === 0) return;
+    if (data.length === 0) {
+      getPastData();
+    }
     if (modalStatus === MODAL_STATUS.INIT) {
       setModalStatus(MODAL_STATUS.FINISHED);
     }

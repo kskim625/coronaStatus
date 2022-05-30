@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Main from './components/pages/Main';
@@ -27,20 +25,14 @@ export interface objectType {
   updateDt: string;
 }
 
-const Transition = ({ data }: { data: objectType[][] }) => {
-  const location = useLocation();
-
+const Components = ({ data }: { data: objectType[][] }) => {
   return (
-    <TransitionGroup className="transition-group">
-      <CSSTransition key={location.key} timeout={500} classNames="page-slider">
-        <Routes>
-          <Route path="/card" element={<Card data={data} />}></Route>
-          <Route path="/map" element={<Map data={data} />}></Route>
-          <Route path="/graph" element={<Graph data={data} />}></Route>
-          <Route path="/" element={<Main />}></Route>
-        </Routes>
-      </CSSTransition>
-    </TransitionGroup>
+    <Routes>
+      <Route path="/card" element={<Card data={data} />}></Route>
+      <Route path="/map" element={<Map data={data} />}></Route>
+      <Route path="/graph" element={<Graph data={data} />}></Route>
+      <Route path="/" element={<Main />}></Route>
+    </Routes>
   );
 };
 
@@ -87,7 +79,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Header data={data} getData={getData} />
-      <Transition data={data} />
+      <Components data={data} />
       <Footer />
     </BrowserRouter>
   );

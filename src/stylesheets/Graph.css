@@ -3,6 +3,9 @@
   justify-content: space-around;
   margin-top: 10%;
   min-width: 1200px;
+  transition: 0.5s;
+  opacity: 0;
+  animation: appears 1s forwards;
 }
 
 @media screen and (max-width: 960px) {

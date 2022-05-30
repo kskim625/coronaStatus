@@ -6,6 +6,9 @@ body {
 #wrapper {
   min-width: 1200px;
   height: fit-content;
+  transition: 0.5s;
+  opacity: 0;
+  animation: appears 1s forwards;
 }
 
 .card-set-card {

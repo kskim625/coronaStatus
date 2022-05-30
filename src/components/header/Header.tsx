@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import HeaderButtons from './HeaderButtons';
 import HeaderDateInfo from './HeaderDateInfo';
-import MessagesModal from '../common/MessagesModal';
 import { objectType } from '../../App';
 import '../../stylesheets/Header.css';
 
@@ -21,7 +20,6 @@ const Header = ({ data, getData }: { data: objectType[][]; getData: (query: stri
     <>
       <UpperHeader />
       <HeaderDateInfo data={data} modalStatus={modalStatus} setModalStatus={setModalStatus} getData={getData} />
-      <MessagesModal data={data} modalStatus={modalStatus} getData={getData} />
     </>
   );
 };

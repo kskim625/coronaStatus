@@ -9,6 +9,9 @@
   width: 530px;
   height: 800px;
   cursor: pointer;
+  transition: 0.5s;
+  opacity: 0;
+  animation: appears 1s forwards;
 }
 
 .land {

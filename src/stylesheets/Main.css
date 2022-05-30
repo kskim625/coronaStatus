@@ -1,9 +1,24 @@
+#main-description {
+  display: flex;
+  justify-content: center;
+  margin-top: 45px;
+  text-align: center;
+  transition: 0.5s;
+  opacity: 0;
+  animation: appears 1s forwards;
+  animation-delay: 1s;
+}
+
 #main {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   min-width: 1200px;
   height: fit-content;
   margin: 100px auto 0;
+  opacity: 0;
+  animation: appears 2s forwards;
+  animation-delay: 2s;
 }
 
 .main-btn {
@@ -12,11 +27,11 @@
 }
 
 .main-image-btn {
-  width: 250px;
-  height: 250px;
+  width: 225px;
+  height: 225px;
   border: 1px rgba(0, 0, 0, 0.2) solid;
   border-radius: 15px;
-  padding: 50px;
+  padding: 35px;
   cursor: pointer;
   transition: 0.5s;
   box-shadow: 6px 3px 6px rgba(0, 0, 0, 0.1);
@@ -28,6 +43,7 @@
 }
 
 .main-image-btn:hover {
+  border: 1px rgba(255, 0, 0) solid;
   transform: scale(1.05) translateY(10px);
 }
 
@@ -42,8 +58,9 @@
   }
 
   .main-image-btn {
-    width: 20vw;
-    height: 20vw;
-    padding: 3vw;
+    width: 150px;
+    height: 150px;
+    padding: 25px;
+    margin-bottom: 20px;
   }
 }
