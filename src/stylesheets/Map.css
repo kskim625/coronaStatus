@@ -7,7 +7,7 @@
 .map-wrapper {
   display: flex;
   justify-content: center;
-  min-width: 1200px;
+  min-width: 400px;
   transform: translateY(-100px);
 }
 
@@ -71,7 +71,6 @@
     position: fixed;
     flex-direction: column-reverse;
     align-items: center;
-    min-width: 100%;
     animation: mapResponsiveAppears 1s forwards;
   }
 

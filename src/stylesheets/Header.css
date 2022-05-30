@@ -3,6 +3,8 @@
   justify-content: space-between;
   position: fixed;
   top: 0;
+  right: 0;
+  left: 0;
   font-size: 25px;
   font-weight: 600;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -22,7 +24,7 @@
   display: flex;
   position: relative;
   margin-top: 60px;
-  min-width: 1200px;
+  min-width: 400px;
   justify-content: center;
   transform: translateY(10px);
   z-index: 1;
@@ -51,8 +53,8 @@
 
 .header-date-modal {
   position: fixed;
-  width: fit-content;
   margin: 0 auto;
+  width: fit-content;
   top: 25%;
   left: 0;
   right: 0;
@@ -63,15 +65,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
   border: 1px #000 solid;
-  padding: 2.5vh 2.5vw;
+  padding: 25px;
+  margin: 0 auto;
+  font-size: 18px;
 }
 
 .header-date-modal-text {
   border-radius: 0.5vh;
-  margin: 1vh 0;
-  width: 22vw;
+  margin: 10px 0 0;
+  width: 275px;
 }
 
 .header-date-modal-warning {
@@ -85,11 +88,8 @@
 
 .header-date-modal-submit {
   border: 1px #000 solid;
-  padding: 0.5vh 1vw;
-  margin: 0 1vw;
-  height: 2vh;
-  line-height: 2vh;
-  font-size: 2vh;
+  padding: 5px 10px;
+  margin: 0 15px;
   box-shadow: 3px 2px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   color: #000;
@@ -100,15 +100,6 @@
 .header-date-modal-submit:hover {
   color: #fff;
   background-color: #000;
-}
-
-.header-image {
-  width: 75px;
-  margin-right: 15px;
-}
-
-.header-dummy {
-  width: 75px;
 }
 
 .header-btn {
@@ -131,15 +122,6 @@
 }
 
 @media screen and (max-width: 960px) {
-  #header {
-    min-width: 100%;
-  }
-
-  .header-image,
-  .header-dummy {
-    width: 10vw;
-  }
-
   .header-description {
     display: flex;
     align-items: center;
@@ -150,16 +132,23 @@
   .header-btn {
     padding: 0;
     margin: 0;
-    width: 10vw;
-    font-size: 10px;
+    width: 45px;
+    font-size: 12px;
   }
 
   .header-date {
     margin-top: 45px;
-    min-width: 100vw;
   }
 
   .header-date-arrow {
-    width: 3vw;
+    width: 20px;
+  }
+
+  .header-date-modal-content {
+    font-size: 14px;
+  }
+
+  .header-date-modal-text {
+    width: 200px;
   }
 }

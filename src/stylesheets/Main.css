@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   margin-top: 45px;
+  min-width: 400px;
   text-align: center;
   transition: 0.5s;
   opacity: 0;
@@ -13,7 +14,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  min-width: 1200px;
+  min-width: 400px;
   height: fit-content;
   margin: 100px auto 0;
   opacity: 0;
@@ -50,7 +51,6 @@
 @media screen and (max-width: 960px) {
   #main {
     margin: 5vh auto;
-    min-width: 100vw;
   }
 
   .main-btn-description {

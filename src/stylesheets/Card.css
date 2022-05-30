@@ -5,7 +5,7 @@ body {
 
 #wrapper {
   margin-bottom: 10vh;
-  min-width: 1200px;
+  min-width: 400px;
   height: fit-content;
   transition: 0.5s;
   opacity: 0;
@@ -23,10 +23,4 @@ body {
   align-items: center;
   margin-left: 175px;
   height: 800px;
-}
-
-@media screen and (max-width: 960px) {
-  #wrapper {
-    min-width: 100%;
-  }
 }
