@@ -15,7 +15,7 @@
 #header-buttons {
   display: flex;
   justify-content: center;
-  margin-right: 30px;
+  margin-right: 35px;
 }
 
 .header-date {
@@ -132,7 +132,7 @@
 
 @media screen and (max-width: 960px) {
   #header {
-    min-width: 400px;
+    min-width: 100%;
   }
 
   .header-image,

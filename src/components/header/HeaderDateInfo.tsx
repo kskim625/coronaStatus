@@ -134,13 +134,10 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerDa
   };
 
   useEffect(() => {
-    if (data.length === 0) {
-      getPastData();
-    }
+    data.length === 0 ? getPastData() : setDate(moment(data[0][0].createDt));
     if (modalStatus === MODAL_STATUS.INIT) {
       setModalStatus(MODAL_STATUS.FINISHED);
     }
-    setDate(moment(data[0][0].createDt));
   }, [data]);
 
   useEffect(() => {

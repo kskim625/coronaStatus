@@ -6,7 +6,6 @@ import Main from './components/pages/Main';
 import Card from './components/pages/Card';
 import Map from './components/pages/Map';
 import Graph from './components/pages/Graph';
-import './stylesheets/Transition.css';
 
 export interface objectType {
   createDt: string;

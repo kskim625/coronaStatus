@@ -1,3 +1,9 @@
+.map {
+  width: 530px;
+  height: 800px;
+  cursor: pointer;
+}
+
 .map-wrapper {
   display: flex;
   justify-content: center;
@@ -5,10 +11,8 @@
   transform: translateY(-100px);
 }
 
-.map {
-  width: 530px;
-  height: 800px;
-  cursor: pointer;
+.map,
+.card-set-map {
   transition: 0.5s;
   opacity: 0;
   animation: appears 1s forwards;
@@ -51,14 +55,24 @@
   opacity: 0.5;
 }
 
+@keyframes mapResponsiveAppears {
+  0% {
+    transform: translateX(-15%) translateY(-200px) scale(0.6);
+  }
+  100% {
+    transform: translateX(-15%) translateY(-225px) scale(0.6);
+    opacity: 1;
+  }
+}
+
 @media screen and (max-width: 960px) {
   .map-wrapper {
     display: flex;
     position: fixed;
     flex-direction: column-reverse;
     align-items: center;
-    min-width: 100vw;
-    transform: scaleX(0.5) scaleY(0.8) translateX(-30%) translateY(-38%);
+    min-width: 100%;
+    animation: mapResponsiveAppears 1s forwards;
   }
 
   .map {

@@ -4,6 +4,7 @@ body {
 }
 
 #wrapper {
+  margin-bottom: 10vh;
   min-width: 1200px;
   height: fit-content;
   transition: 0.5s;
@@ -26,6 +27,6 @@ body {
 
 @media screen and (max-width: 960px) {
   #wrapper {
-    min-width: 100vw;
+    min-width: 100%;
   }
 }
