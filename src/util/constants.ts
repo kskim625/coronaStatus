@@ -3,7 +3,7 @@ export const CLASSES = {
   MODAL_BUTTON_INACTIVE: 'modal-button-inactive',
 };
 
-export const MODAL_STATUS = {
+export const FETCH_STATUS = {
   INIT: 'init',
   FINISHED: 'finished',
   UPDATING: 'updating',

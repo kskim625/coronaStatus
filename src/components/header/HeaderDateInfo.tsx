@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, Dispatch, SetStateAction } from 'react';
 import moment from 'moment';
 import { objectType } from '../../App';
-import { MODAL_MESSAGES, MODAL_STATUS } from '../../util/constants';
+import { MODAL_MESSAGES, FETCH_STATUS } from '../../util/constants';
 import leftArrow from '../../images/leftArrow.svg';
 import rightArrow from '../../images/rightArrow.svg';
 
@@ -40,11 +40,11 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerDa
       setDate(newDate);
     }
     if (changed) {
-      setModalStatus(MODAL_STATUS.INIT);
+      setModalStatus(FETCH_STATUS.INIT);
       const searchDate: string = getNewDate(newDate);
       await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
     }
-    setModalStatus(MODAL_STATUS.FINISHED);
+    setModalStatus(FETCH_STATUS.FINISHED);
   };
 
   const isInputValid = () => {
@@ -74,10 +74,10 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerDa
   const getDatesData = async () => {
     if (isInputValid()) {
       const searchDate = (dateRef.current as HTMLInputElement).value;
-      setModalStatus(MODAL_STATUS.UPDATING);
+      setModalStatus(FETCH_STATUS.UPDATING);
       setModalMessage(MODAL_MESSAGES.LOAD_DATA);
       await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
-      setModalStatus(MODAL_STATUS.UPDATED);
+      setModalStatus(FETCH_STATUS.UPDATED);
       setModalMessage(MODAL_MESSAGES.BLANK);
     }
   };
@@ -85,7 +85,7 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerDa
   const removeModal = () => {
     setDateModal(<></>);
     setModalMessage(MODAL_MESSAGES.BLANK);
-    setModalStatus(MODAL_STATUS.UPDATED);
+    setModalStatus(FETCH_STATUS.UPDATED);
   };
 
   const setModal = () => {
@@ -109,7 +109,7 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerDa
       </div>
     );
     setDateModal(modal);
-    setModalStatus(MODAL_STATUS.UPDATING);
+    setModalStatus(FETCH_STATUS.UPDATING);
   };
 
   const moveDate = () => {
@@ -135,15 +135,15 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerDa
 
   useEffect(() => {
     data.length === 0 ? getPastData() : setDate(moment(data[0][0].createDt));
-    if (modalStatus === MODAL_STATUS.INIT) {
-      setModalStatus(MODAL_STATUS.FINISHED);
+    if (modalStatus === FETCH_STATUS.INIT) {
+      setModalStatus(FETCH_STATUS.FINISHED);
     }
   }, [data]);
 
   useEffect(() => {
-    if (modalStatus === MODAL_STATUS.FINISHED || modalStatus === MODAL_STATUS.UPDATING) {
+    if (modalStatus === FETCH_STATUS.FINISHED || modalStatus === FETCH_STATUS.UPDATING) {
       setModal();
-    } else if (modalStatus === MODAL_STATUS.UPDATED) {
+    } else if (modalStatus === FETCH_STATUS.UPDATED) {
       removeModal();
     }
   }, [modalMessage]);
