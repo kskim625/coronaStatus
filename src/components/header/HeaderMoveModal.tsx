@@ -8,7 +8,7 @@ interface propsType {
   removeModal: () => void;
 }
 
-const HeaderModal = ({ dateRef, isInputValid, modalMessage, getDatesData, removeModal }: propsType) => {
+const HeaderMoveModal = ({ dateRef, isInputValid, modalMessage, getDatesData, removeModal }: propsType) => {
   const handleClickWrapper = (e: React.MouseEvent) => {
     const WRAPPER_CLASSNAME = 'header-date-move';
     if (WRAPPER_CLASSNAME === (e.target as HTMLElement).className) {
@@ -37,4 +37,4 @@ const HeaderModal = ({ dateRef, isInputValid, modalMessage, getDatesData, remove
   );
 };
 
-export default HeaderModal;
+export default HeaderMoveModal;

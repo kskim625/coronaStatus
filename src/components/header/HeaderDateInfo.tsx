@@ -2,7 +2,8 @@ import { useState, useRef, useEffect, Dispatch, SetStateAction } from 'react';
 import moment from 'moment';
 import { objectType } from '../../App';
 import { MODAL_MESSAGES, FETCH_STATUS } from '../../util/constants';
-import HeaderModal from './HeaderModal';
+import HeaderMoveModal from './HeaderMoveModal';
+import HeaderArrowModal from './HeaderArrowModal';
 import leftArrow from '../../images/leftArrow.svg';
 import rightArrow from '../../images/rightArrow.svg';
 
@@ -27,8 +28,13 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerDa
     return year + month + day;
   };
 
+  const setModalFromArrow = (status: string) => {
+    status === FETCH_STATUS.UPDATING ? setDateModal(<HeaderArrowModal />) : setDateModal(<></>);
+  };
+
   const changeDate = async (e: React.MouseEvent) => {
-    setModalStatus('load');
+    setModalStatus(FETCH_STATUS.UPDATING);
+    setModalFromArrow(FETCH_STATUS.UPDATING);
     let newDate: moment.Moment = moment();
     let changed: boolean = false;
     if (date > moment('21-01-2020', 'DD-MM-YYYY') && leftArrowRef.current === e.target) {
@@ -46,6 +52,7 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerDa
       await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
     }
     setModalStatus(FETCH_STATUS.FINISHED);
+    setModalFromArrow(FETCH_STATUS.FINISHED);
   };
 
   const isInputValid = () => {
@@ -91,7 +98,13 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerDa
 
   const setModal = () => {
     const modal: JSX.Element = (
-      <HeaderModal dateRef={dateRef} isInputValid={isInputValid} modalMessage={modalMessage} getDatesData={getDatesData} removeModal={removeModal} />
+      <HeaderMoveModal
+        dateRef={dateRef}
+        isInputValid={isInputValid}
+        modalMessage={modalMessage}
+        getDatesData={getDatesData}
+        removeModal={removeModal}
+      />
     );
     setDateModal(modal);
     setModalStatus(FETCH_STATUS.UPDATING);
