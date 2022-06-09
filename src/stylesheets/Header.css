@@ -10,7 +10,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding: 5px 25px 5px;
   width: 100%;
-  background-color: #fff;
+  background-color: #f9f9f9;
   z-index: 200;
 }
 
@@ -34,6 +34,11 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.header-date-text:hover {
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .header-date-arrow {
@@ -65,7 +70,7 @@
   top: 30%;
   left: 0;
   right: 0;
-  background-color: #fff;
+  background-color: #f9f9f9;
 }
 
 .header-date-modal-content {
@@ -120,7 +125,7 @@
   line-height: 30px;
   border: none;
   margin: auto 5px;
-  background-color: #fff;
+  background-color: #f9f9f9;
   cursor: pointer;
   font-size: 18px;
   font-weight: 600;
