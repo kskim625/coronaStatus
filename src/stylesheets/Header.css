@@ -45,6 +45,11 @@
   margin: 0 5px;
   width: 25px;
   cursor: pointer;
+  transition: 0.2s;
+}
+
+.header-date-arrow:hover {
+  transform: scale(1.15);
 }
 
 .header-date-move {
@@ -134,6 +139,7 @@
 }
 
 .header-btn:hover {
+  border-radius: 5px;
   background-color: #000;
   color: #fff;
 }
