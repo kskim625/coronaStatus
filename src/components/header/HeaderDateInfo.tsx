@@ -1,20 +1,13 @@
-import { useState, useRef, useEffect, Dispatch, SetStateAction } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import moment from 'moment';
-import { objectType } from '../../App';
 import { MODAL_MESSAGES, FETCH_STATUS } from '../../util/constants';
 import HeaderMoveModal from './HeaderMoveModal';
 import HeaderArrowModal from './HeaderArrowModal';
 import leftArrow from '../../images/leftArrow.svg';
 import rightArrow from '../../images/rightArrow.svg';
+import { headerType } from './Header';
 
-interface headerDateInfoType {
-  data: objectType[][];
-  modalStatus: string;
-  setModalStatus: Dispatch<SetStateAction<string>>;
-  getData: (query: string) => Promise<void>;
-}
-
-const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerDateInfoType) => {
+const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerType) => {
   const [date, setDate] = useState<moment.Moment>(moment());
   const [dateModal, setDateModal] = useState<JSX.Element>(<></>);
   const [modalMessage, setModalMessage] = useState<string>('');
@@ -47,7 +40,7 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerDa
       setDate(newDate);
     }
     if (changed) {
-      setModalStatus(FETCH_STATUS.INIT);
+      setModalStatus(FETCH_STATUS.UPDATING);
       const searchDate: string = getNewDate(newDate);
       await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
     }
@@ -124,15 +117,15 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerDa
 
   const getPastData = async () => {
     const searchDate: string = getYesterday();
+    setModalStatus(FETCH_STATUS.UPDATING);
     await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
   };
 
   useEffect(() => {
+    if (modalStatus === FETCH_STATUS.INIT) return;
     data.length === 0 ? getPastData() : setDate(moment(data[0][0].createDt));
-    if (modalStatus === FETCH_STATUS.INIT) {
-      setModalStatus(FETCH_STATUS.FINISHED);
-    }
-  }, [data]);
+    setModalStatus(FETCH_STATUS.FINISHED);
+  }, [data, modalStatus]);
 
   useEffect(() => {
     if (modalStatus === FETCH_STATUS.FINISHED || modalStatus === FETCH_STATUS.UPDATING) {

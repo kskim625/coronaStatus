@@ -6,6 +6,7 @@ import Main from './components/pages/Main';
 import Card from './components/pages/Card';
 import Map from './components/pages/Map';
 import Graph from './components/pages/Graph';
+import { FETCH_STATUS } from './util/constants';
 
 export interface objectType {
   createDt: string;
@@ -37,6 +38,7 @@ const Components = ({ data }: { data: objectType[][] }) => {
 
 const App = () => {
   const [data, setData] = useState<objectType[][]>([]);
+  const [modalStatus, setModalStatus] = useState<string>(FETCH_STATUS.INIT);
   const FETCH_PATH = 'data/corona';
 
   const sortData = (response: objectType[]) => {
@@ -68,6 +70,8 @@ const App = () => {
     } catch (error) {
       console.log(error);
       divideData(undefined);
+    } finally {
+      setModalStatus(FETCH_STATUS.FINISHED);
     }
   };
 
@@ -77,7 +81,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Header data={data} getData={getData} />
+      <Header data={data} modalStatus={modalStatus} setModalStatus={setModalStatus} getData={getData} />
       <Components data={data} />
       <Footer />
     </BrowserRouter>

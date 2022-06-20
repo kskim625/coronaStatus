@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import HeaderButtons from './HeaderButtons';
 import HeaderDateInfo from './HeaderDateInfo';
 import { objectType } from '../../App';
@@ -13,9 +13,14 @@ const UpperHeader = () => {
   );
 };
 
-const Header = ({ data, getData }: { data: objectType[][]; getData: (query: string) => Promise<void> }) => {
-  const [modalStatus, setModalStatus] = useState<string>('init');
+export interface headerType {
+  data: objectType[][];
+  modalStatus: string;
+  setModalStatus: Dispatch<SetStateAction<string>>;
+  getData: (query: string) => Promise<void>;
+}
 
+const Header = ({ data, modalStatus, setModalStatus, getData }: headerType) => {
   return (
     <>
       <UpperHeader />
