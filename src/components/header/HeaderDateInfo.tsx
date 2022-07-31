@@ -78,8 +78,7 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerTy
       setModalStatus(FETCH_STATUS.UPDATING);
       setModalMessage(MODAL_MESSAGES.LOAD_DATA);
       await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
-      setModalStatus(FETCH_STATUS.UPDATED);
-      setModalMessage(MODAL_MESSAGES.BLANK);
+      removeModal();
     }
   };
 
@@ -119,6 +118,7 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerTy
     const searchDate: string = getYesterday();
     setModalStatus(FETCH_STATUS.UPDATING);
     await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
+    setModalStatus(FETCH_STATUS.UPDATED);
   };
 
   useEffect(() => {
@@ -129,7 +129,9 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerTy
 
   useEffect(() => {
     if (modalStatus === FETCH_STATUS.FINISHED || modalStatus === FETCH_STATUS.UPDATING) {
-      setModal();
+      if ((dateRef.current as HTMLInputElement)?.value) {
+        setModal();
+      }
     } else if (modalStatus === FETCH_STATUS.UPDATED) {
       removeModal();
     }

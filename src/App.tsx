@@ -63,9 +63,8 @@ const App = () => {
   };
 
   const getData = async (query: string) => {
-    let data;
     try {
-      data = await (await fetch(FETCH_PATH + query)).json();
+      const data = await (await fetch(FETCH_PATH + query)).json();
       divideData(data.response.body.items.item);
     } catch (error) {
       console.log(error);
