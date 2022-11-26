@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect, useState, useCallback } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { XMLParser } from 'fast-xml-parser';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Main from './components/pages/Main';
@@ -28,10 +29,11 @@ export interface objectType {
 const Components = ({ data }: { data: objectType[][] }) => {
   return (
     <Routes>
-      <Route path="/card" element={<Card data={data} />}></Route>
-      <Route path="/map" element={<Map data={data} />}></Route>
-      <Route path="/graph" element={<Graph data={data} />}></Route>
-      <Route path="/" element={<Main />}></Route>
+      <Route path="/card" element={<Card data={data} />} />
+      <Route path="/map" element={<Map data={data} />} />
+      <Route path="/graph" element={<Graph data={data} />} />
+      <Route path="/" element={<Main />} />
+      <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
   );
 };
@@ -62,17 +64,21 @@ const App = () => {
     setData(dataSet);
   };
 
-  const getData = async (query: string) => {
+  const getData = useCallback(async (query: string) => {
     try {
-      const data = await (await fetch(FETCH_PATH + query)).json();
-      divideData(data.response.body.items.item);
+      const SERVICE_URL = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson';
+      const AUTHORIZATION_KEY = '?serviceKey=Fl9rhYMejA8nhCfRxunEiv8iCWEKK%2FAiNOgmkrp0onGw%2FGIpuTVQc7vH0Kmh%2BaiOeQ6SZSXjk8zaqOdbp9yYTg%3D%3D';
+
+      const data = await fetch(SERVICE_URL + AUTHORIZATION_KEY + query);
+      const itemArr = new XMLParser().parse(await data.text()).response.body?.items?.item || [];
+      divideData(itemArr);
     } catch (error) {
       console.log(error);
       divideData(undefined);
     } finally {
       setModalStatus(FETCH_STATUS.FINISHED);
     }
-  };
+  }, []);
 
   useEffect(() => {
     getData('');
