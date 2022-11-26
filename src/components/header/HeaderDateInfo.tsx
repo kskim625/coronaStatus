@@ -1,15 +1,14 @@
-import { useState, useRef, useEffect } from 'react';
+import { Fragment, useState, useRef, useEffect, useCallback } from 'react';
 import moment from 'moment';
-import { MODAL_MESSAGES, FETCH_STATUS } from '../../util/constants';
+import { MODAL_MESSAGES } from '../../util/constants';
 import HeaderMoveModal from './HeaderMoveModal';
-import HeaderArrowModal from './HeaderArrowModal';
 import leftArrow from '../../images/leftArrow.svg';
 import rightArrow from '../../images/rightArrow.svg';
 import { headerType } from './Header';
 
-const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerType) => {
+const HeaderDateInfo = ({ data, getData }: headerType) => {
   const [date, setDate] = useState<moment.Moment>(moment());
-  const [dateModal, setDateModal] = useState<JSX.Element>(<></>);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [modalMessage, setModalMessage] = useState<string>('');
   const leftArrowRef = useRef<HTMLImageElement>(null);
   const dateRef = useRef<HTMLInputElement>(null);
@@ -21,37 +20,32 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerTy
     return year + month + day;
   };
 
-  const setModalFromArrow = (status: string) => {
-    status === FETCH_STATUS.UPDATING ? setDateModal(<HeaderArrowModal />) : setDateModal(<></>);
-  };
-
-  const changeDate = async (e: React.MouseEvent) => {
-    setModalStatus(FETCH_STATUS.UPDATING);
-    setModalFromArrow(FETCH_STATUS.UPDATING);
-    let newDate: moment.Moment = moment();
-    let changed: boolean = false;
-    if (date > moment('21-01-2020', 'DD-MM-YYYY') && leftArrowRef.current === e.target) {
-      newDate = date.add(-1, 'days');
-      changed = true;
-      setDate(newDate);
-    } else if (date < moment().add(-1, 'days') && leftArrowRef.current !== e.target) {
-      newDate = date.add(1, 'days');
-      changed = true;
-      setDate(newDate);
-    }
-    if (changed) {
-      setModalStatus(FETCH_STATUS.UPDATING);
-      const searchDate: string = getNewDate(newDate);
-      await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
-    }
-    setModalStatus(FETCH_STATUS.FINISHED);
-    setModalFromArrow(FETCH_STATUS.FINISHED);
-  };
+  const changeDate = useCallback(
+    async (e: React.MouseEvent) => {
+      let newDate: moment.Moment = moment();
+      let changed: boolean = false;
+      if (date > moment('21-01-2020', 'DD-MM-YYYY') && leftArrowRef.current === e.target) {
+        newDate = date.add(-1, 'days');
+        changed = true;
+        setDate(newDate);
+      } else if (date < moment().add(-1, 'days') && leftArrowRef.current !== e.target) {
+        newDate = date.add(1, 'days');
+        changed = true;
+        setDate(newDate);
+      }
+      if (changed) {
+        const searchDate: string = getNewDate(newDate);
+        console.log('changeDate');
+        await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
+      }
+    },
+    [getData]
+  );
 
   const isInputValid = () => {
     const searchDate = (dateRef.current as HTMLInputElement).value;
     const isValid = moment(searchDate, 'YYYYMMDD').format('YYYYMMDD');
-    if ((searchDate as unknown as number) != Number(searchDate)) {
+    if (Number(searchDate) != Number(searchDate)) {
       setModalMessage(MODAL_MESSAGES.NUMBER_ERR);
       return false;
     } else if (searchDate.length !== 8) {
@@ -72,38 +66,22 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerTy
     }
   };
 
-  const getDatesData = async () => {
+  const getDatesData = useCallback(async () => {
     if (isInputValid()) {
       const searchDate = (dateRef.current as HTMLInputElement).value;
-      setModalStatus(FETCH_STATUS.UPDATING);
       setModalMessage(MODAL_MESSAGES.LOAD_DATA);
       await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
-      removeModal();
+      closeModal();
     }
+  }, [getData]);
+
+  const openModal = () => {
+    setModalOpen(true);
   };
 
-  const removeModal = () => {
-    setDateModal(<></>);
+  const closeModal = () => {
+    setModalOpen(false);
     setModalMessage(MODAL_MESSAGES.BLANK);
-    setModalStatus(FETCH_STATUS.UPDATED);
-  };
-
-  const setModal = () => {
-    const modal: JSX.Element = (
-      <HeaderMoveModal
-        dateRef={dateRef}
-        isInputValid={isInputValid}
-        modalMessage={modalMessage}
-        getDatesData={getDatesData}
-        removeModal={removeModal}
-      />
-    );
-    setDateModal(modal);
-    setModalStatus(FETCH_STATUS.UPDATING);
-  };
-
-  const moveDate = () => {
-    !dateModal.props.children ? setModal() : removeModal();
   };
 
   const getYesterday = () => {
@@ -114,38 +92,33 @@ const HeaderDateInfo = ({ data, modalStatus, setModalStatus, getData }: headerTy
     return year + month + day;
   };
 
-  const getPastData = async () => {
+  const getPastData = useCallback(async () => {
     const searchDate: string = getYesterday();
-    setModalStatus(FETCH_STATUS.UPDATING);
     await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
-    setModalStatus(FETCH_STATUS.UPDATED);
-  };
+  }, []);
 
   useEffect(() => {
-    if (modalStatus === FETCH_STATUS.INIT) return;
     data.length === 0 ? getPastData() : setDate(moment(data[0][0].createDt));
-    setModalStatus(FETCH_STATUS.FINISHED);
-  }, [data, modalStatus]);
-
-  useEffect(() => {
-    if (modalStatus === FETCH_STATUS.FINISHED || modalStatus === FETCH_STATUS.UPDATING) {
-      if ((dateRef.current as HTMLInputElement)?.value) {
-        setModal();
-      }
-    } else if (modalStatus === FETCH_STATUS.UPDATED) {
-      removeModal();
-    }
-  }, [modalMessage]);
+  }, [data]);
 
   return (
-    <>
+    <Fragment>
       <div className="header-date">
         <img className="header-date-arrow" src={leftArrow} onClick={changeDate} ref={leftArrowRef}></img>
-        <div className="header-date-text" onClick={moveDate}>{`${date.format('YYYY')}년 ${date.format('MM')}월 ${date.format('DD')}일 0시 기준`}</div>
+        <div className="header-date-text" onClick={openModal}>{`${date.format('YYYY')}년 ${date.format('MM')}월 ${date.format(
+          'DD'
+        )}일 0시 기준`}</div>
         <img className="header-date-arrow" src={rightArrow} onClick={changeDate}></img>
       </div>
-      {dateModal}
-    </>
+      <HeaderMoveModal
+        open={modalOpen}
+        dateRef={dateRef}
+        isInputValid={isInputValid}
+        modalMessage={modalMessage}
+        getDatesData={getDatesData}
+        closeModal={closeModal}
+      />
+    </Fragment>
   );
 };
 
