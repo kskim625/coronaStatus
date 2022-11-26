@@ -3,13 +3,6 @@ export const CLASSES = {
   MODAL_BUTTON_INACTIVE: 'modal-button-inactive',
 };
 
-export const FETCH_STATUS = {
-  INIT: 'init',
-  FINISHED: 'finished',
-  UPDATING: 'updating',
-  UPDATED: 'updated',
-};
-
 export const MODAL_MESSAGES = {
   TIME_MESSAGE: '오전 0시 ~ 10시 사이에는 당일 데이터가 업데이트 되지 않을 수 있습니다.',
   BUTTON_MESSAGE: '어제 데이터 불러오기',

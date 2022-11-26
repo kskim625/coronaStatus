@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import { Fragment } from 'react';
 import HeaderButtons from './HeaderButtons';
 import HeaderDateInfo from './HeaderDateInfo';
 import { objectType } from '../../App';
@@ -15,18 +15,16 @@ const UpperHeader = () => {
 
 export interface headerType {
   data: objectType[][];
-  modalStatus: string;
-  setModalStatus: Dispatch<SetStateAction<string>>;
   getData: (query: string) => Promise<void>;
 }
 
-const Header = ({ data, modalStatus, setModalStatus, getData }: headerType) => {
+const Header = ({ data, getData }: headerType) => {
   return (
-    <>
+    <Fragment>
       <UpperHeader />
-      <HeaderDateInfo data={data} modalStatus={modalStatus} setModalStatus={setModalStatus} getData={getData} />
-    </>
+      <HeaderDateInfo data={data} getData={getData} />
+    </Fragment>
   );
 };
 
-export default React.memo(Header);
+export default Header;

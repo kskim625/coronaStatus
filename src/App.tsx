@@ -7,7 +7,6 @@ import Main from './components/pages/Main';
 import Card from './components/pages/Card';
 import Map from './components/pages/Map';
 import Graph from './components/pages/Graph';
-import { FETCH_STATUS } from './util/constants';
 
 export interface objectType {
   createDt: string;
@@ -40,7 +39,6 @@ const Components = ({ data }: { data: objectType[][] }) => {
 
 const App = () => {
   const [data, setData] = useState<objectType[][]>([]);
-  const [modalStatus, setModalStatus] = useState<string>(FETCH_STATUS.INIT);
 
   const sortData = (response: objectType[]) => {
     response.sort((previous, next) => {
@@ -75,8 +73,6 @@ const App = () => {
       } catch (error) {
         console.log(error);
         divideData(undefined);
-      } finally {
-        setModalStatus(FETCH_STATUS.FINISHED);
       }
     },
     [divideData]
@@ -88,7 +84,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Header data={data} modalStatus={modalStatus} setModalStatus={setModalStatus} getData={getData} />
+      <Header data={data} getData={getData} />
       <Components data={data} />
       <Footer />
     </BrowserRouter>
