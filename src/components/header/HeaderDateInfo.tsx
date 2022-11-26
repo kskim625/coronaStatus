@@ -39,13 +39,16 @@ const HeaderDateInfo = ({ data, getData }: headerType) => {
         await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
       }
     },
-    [getData]
+    [date, getData]
   );
 
   const isInputValid = () => {
     const searchDate = (dateRef.current as HTMLInputElement).value;
     const isValid = moment(searchDate, 'YYYYMMDD').format('YYYYMMDD');
-    if (Number(searchDate) != Number(searchDate)) {
+    if (searchDate === '') {
+      setModalMessage(MODAL_MESSAGES.BLANK);
+      return false;
+    } else if (!Number(searchDate)) {
       setModalMessage(MODAL_MESSAGES.NUMBER_ERR);
       return false;
     } else if (searchDate.length !== 8) {
@@ -95,20 +98,21 @@ const HeaderDateInfo = ({ data, getData }: headerType) => {
   const getPastData = useCallback(async () => {
     const searchDate: string = getYesterday();
     await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
-  }, []);
+  }, [getData]);
 
   useEffect(() => {
     data.length === 0 ? getPastData() : setDate(moment(data[0][0].createDt));
-  }, [data]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [getPastData]);
 
   return (
     <Fragment>
       <div className="header-date">
-        <img className="header-date-arrow" src={leftArrow} onClick={changeDate} ref={leftArrowRef}></img>
+        <img className="header-date-arrow" src={leftArrow} onClick={changeDate} ref={leftArrowRef} alt="header-date-arrow" />
         <div className="header-date-text" onClick={openModal}>{`${date.format('YYYY')}년 ${date.format('MM')}월 ${date.format(
           'DD'
         )}일 0시 기준`}</div>
-        <img className="header-date-arrow" src={rightArrow} onClick={changeDate}></img>
+        <img className="header-date-arrow" src={rightArrow} onClick={changeDate} alt="header-date-arrow" />
       </div>
       <HeaderMoveModal
         open={modalOpen}

@@ -41,7 +41,6 @@ const Components = ({ data }: { data: objectType[][] }) => {
 const App = () => {
   const [data, setData] = useState<objectType[][]>([]);
   const [modalStatus, setModalStatus] = useState<string>(FETCH_STATUS.INIT);
-  const FETCH_PATH = 'data/corona';
 
   const sortData = (response: objectType[]) => {
     response.sort((previous, next) => {
@@ -51,38 +50,41 @@ const App = () => {
     });
   };
 
-  const divideData = (response: objectType[] | undefined) => {
+  const divideData = useCallback((response: objectType[] | undefined) => {
     if (response === undefined) return;
     sortData(response);
     const total = response.shift();
     const dataSet: objectType[][] = [];
     if (total !== undefined) dataSet.push([total]);
-    response.map((r: objectType, i: number) => {
+    response.forEach((r: objectType, i: number) => {
       if (i % 3 === 0) dataSet.push([r]);
       else dataSet[dataSet.length - 1].push(r);
     });
     setData(dataSet);
-  };
-
-  const getData = useCallback(async (query: string) => {
-    try {
-      const SERVICE_URL = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson';
-      const AUTHORIZATION_KEY = '?serviceKey=Fl9rhYMejA8nhCfRxunEiv8iCWEKK%2FAiNOgmkrp0onGw%2FGIpuTVQc7vH0Kmh%2BaiOeQ6SZSXjk8zaqOdbp9yYTg%3D%3D';
-
-      const data = await fetch(SERVICE_URL + AUTHORIZATION_KEY + query);
-      const itemArr = new XMLParser().parse(await data.text()).response.body?.items?.item || [];
-      divideData(itemArr);
-    } catch (error) {
-      console.log(error);
-      divideData(undefined);
-    } finally {
-      setModalStatus(FETCH_STATUS.FINISHED);
-    }
   }, []);
+
+  const getData = useCallback(
+    async (query: string) => {
+      try {
+        const SERVICE_URL = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson';
+        const AUTHORIZATION_KEY = '?serviceKey=Fl9rhYMejA8nhCfRxunEiv8iCWEKK%2FAiNOgmkrp0onGw%2FGIpuTVQc7vH0Kmh%2BaiOeQ6SZSXjk8zaqOdbp9yYTg%3D%3D';
+
+        const data = await fetch(SERVICE_URL + AUTHORIZATION_KEY + query);
+        const itemArr = new XMLParser().parse(await data.text()).response.body?.items?.item || [];
+        divideData(itemArr);
+      } catch (error) {
+        console.log(error);
+        divideData(undefined);
+      } finally {
+        setModalStatus(FETCH_STATUS.FINISHED);
+      }
+    },
+    [divideData]
+  );
 
   useEffect(() => {
     getData('');
-  }, []);
+  }, [getData]);
 
   return (
     <BrowserRouter>
