@@ -28,8 +28,8 @@ const Graph = ({ data }: { data: objectType[][] }) => {
     labelsTemp.length = 0;
     incDec.length = 0;
     deathCnt.length = 0;
-    data.forEach((dataSet) => {
-      dataSet.map((d) => {
+    data.forEach((dataSet: objectType[]) => {
+      dataSet.forEach((d: objectType) => {
         labelsTemp.push(d.gubun);
         incDec.push(d.incDec);
         deathCnt.push(d.deathCnt);
@@ -78,6 +78,7 @@ const Graph = ({ data }: { data: objectType[][] }) => {
     setDatasets();
     setDatasetsOne(datasetsOneTemp);
     setDatasetsTwo(datasetsTwoTemp);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -88,6 +89,7 @@ const Graph = ({ data }: { data: objectType[][] }) => {
       charts[0].update();
       charts[1].update();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   useEffect(() => {
@@ -98,6 +100,7 @@ const Graph = ({ data }: { data: objectType[][] }) => {
     if (!ctxOne || !ctxTwo) return;
     drawChart(ctxOne, '코로나 오늘 확진자', datasetsOne);
     drawChart(ctxTwo, '누적 사망자 추이', datasetsTwo);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [datasetsOne]);
 
   return (
