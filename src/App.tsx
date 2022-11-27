@@ -63,7 +63,10 @@ const App = () => {
 
   const getData = useCallback(async (query: string) => {
     try {
-      const SERVICE_URL = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson';
+      const SERVICE_URL =
+        process.env.NODE_ENV === 'development'
+          ? 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson'
+          : 'https://frabjous-taffy-068b95.netlify.app/api';
       const AUTHORIZATION_KEY = `${
         query === '' ? '?' : '&'
       }serviceKey=Fl9rhYMejA8nhCfRxunEiv8iCWEKK%2FAiNOgmkrp0onGw%2FGIpuTVQc7vH0Kmh%2BaiOeQ6SZSXjk8zaqOdbp9yYTg%3D%3D`;
