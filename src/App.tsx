@@ -48,7 +48,7 @@ const App = () => {
     });
   };
 
-  const divideData = useCallback((response: objectType[] | undefined) => {
+  const divideData = (response: objectType[] | undefined) => {
     if (response === undefined) return;
     sortData(response);
     const total = response.shift();
@@ -59,24 +59,24 @@ const App = () => {
       else dataSet[dataSet.length - 1].push(r);
     });
     setData(dataSet);
+  };
+
+  const getData = useCallback(async (query: string) => {
+    try {
+      const SERVICE_URL = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson';
+      const AUTHORIZATION_KEY = `${
+        query === '' ? '?' : '&'
+      }serviceKey=Fl9rhYMejA8nhCfRxunEiv8iCWEKK%2FAiNOgmkrp0onGw%2FGIpuTVQc7vH0Kmh%2BaiOeQ6SZSXjk8zaqOdbp9yYTg%3D%3D`;
+
+      const data = await fetch(SERVICE_URL + query + AUTHORIZATION_KEY);
+      const itemArr = new XMLParser().parse(await data.text()).response.body?.items?.item || [];
+      divideData(itemArr);
+    } catch (error) {
+      console.log(error);
+      divideData(undefined);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const getData = useCallback(
-    async (query: string) => {
-      try {
-        const SERVICE_URL = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson';
-        const AUTHORIZATION_KEY = '?serviceKey=Fl9rhYMejA8nhCfRxunEiv8iCWEKK%2FAiNOgmkrp0onGw%2FGIpuTVQc7vH0Kmh%2BaiOeQ6SZSXjk8zaqOdbp9yYTg%3D%3D';
-
-        const data = await fetch(SERVICE_URL + AUTHORIZATION_KEY + query);
-        const itemArr = new XMLParser().parse(await data.text()).response.body?.items?.item || [];
-        divideData(itemArr);
-      } catch (error) {
-        console.log(error);
-        divideData(undefined);
-      }
-    },
-    [divideData]
-  );
 
   useEffect(() => {
     getData('');

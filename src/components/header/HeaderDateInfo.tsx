@@ -35,7 +35,6 @@ const HeaderDateInfo = ({ data, getData }: headerType) => {
       }
       if (changed) {
         const searchDate: string = getNewDate(newDate);
-        console.log('changeDate');
         await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
       }
     },
@@ -74,6 +73,7 @@ const HeaderDateInfo = ({ data, getData }: headerType) => {
       const searchDate = (dateRef.current as HTMLInputElement).value;
       setModalMessage(MODAL_MESSAGES.LOAD_DATA);
       await getData(`?startCreateDt=${searchDate}&endCreateDt=${searchDate}`);
+      setDate(moment(searchDate));
       closeModal();
     }
   }, [getData]);
