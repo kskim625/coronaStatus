@@ -29,15 +29,15 @@ const Main = () => {
       <div id="main">
         <div className="main-btn">
           <div className="main-btn-description">지도로 보기</div>
-          <img className="main-image-btn" src={map} onClick={redirectToMap}></img>
+          <img className="main-image-btn" src={map} onClick={redirectToMap} alt="map-btn" />
         </div>
         <div className="main-btn">
           <div className="main-btn-description">카드로 보기</div>
-          <img className="main-image-btn" src={card} onClick={redirectToCard}></img>
+          <img className="main-image-btn" src={card} onClick={redirectToCard} alt="card-btn" />
         </div>
         <div className="main-btn">
           <div className="main-btn-description">그래프로 보기</div>
-          <img className="main-image-btn" src={graph} onClick={redirectToGraph}></img>
+          <img className="main-image-btn" src={graph} onClick={redirectToGraph} alt="graph-btn" />
         </div>
       </div>
     </>

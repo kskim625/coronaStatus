@@ -28,7 +28,7 @@ const Map = ({ data }: { data: objectType[][] }) => {
   const getLocationInfo = (e: React.MouseEvent) => {
     const word = unescape(replaceAll((e.target as HTMLDivElement).id, '\\', '%'));
     data.forEach((dataSet) => {
-      dataSet.map((d) => {
+      dataSet.forEach((d) => {
         if (word === d.gubun) setLocData([d]);
       });
     });
@@ -36,7 +36,7 @@ const Map = ({ data }: { data: objectType[][] }) => {
 
   const setMapColor = () => {
     data.forEach((dataSet) => {
-      dataSet.map((d) => {
+      dataSet.forEach((d) => {
         const locUnicode = document.getElementById(toUnicode(d.gubun));
         if (locUnicode) {
           classLists.forEach((classList) => {
@@ -52,6 +52,7 @@ const Map = ({ data }: { data: objectType[][] }) => {
     if (data.length === 0) return;
     setLocData([data[0][0]]);
     setMapColor();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   return (
